@@ -6,13 +6,16 @@ import glob
 import sys
 import colorama
 import argparse
-
 from urllib3.exceptions import InsecureRequestWarning 
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
-
-
 storeThreads = []
+R2XX = []
+R3XX = []
+R4XX = []
+R5XX = []
+DOWN = []
+
 def threadManager(function,Funcargs,Startthreshold,Threadtimeout=5):
 	if len(storeThreads) != Startthreshold:
 		storeThreads.append(threading.Thread(target=function,args=tuple(Funcargs) ))
@@ -22,14 +25,6 @@ def threadManager(function,Funcargs,Startthreshold,Threadtimeout=5):
 		for metaThread in storeThreads:
 			metaThread.join(Threadtimeout)
 		del storeThreads[::]
-
-
-R2XX = []
-R3XX = []
-R4XX = []
-R5XX = []
-DOWN = []
-
 
 def CheckURL(URL,timeout):
 
@@ -44,7 +39,6 @@ def CheckURL(URL,timeout):
 		CODE = str(requests.get(URL,timeout=timeout,verify=False).status_code)
 	except:
 		CODE = "down"
-
 
 	if CODE[0] == "2":
 		R2XX.append(URL)
@@ -63,15 +57,7 @@ def CheckURL(URL,timeout):
 		print colorama.Fore.RED    + "[DOWN] {0}\n".format(URL),
 
 
-
-
 colorama.init(autoreset=True)
-
-
-
-
-
-
 print colorama.Fore.YELLOW  + " ______   _______  __   __  _______  ___   __    _  ___   _  _______  ______   "
 print colorama.Fore.YELLOW  + "|      | |       ||  |_|  ||   _   ||   | |  |  | ||   | | ||       ||    _ |  "
 print colorama.Fore.RED     + "|  _    ||   _   ||       ||  |_|  ||   | |   |_| ||   |_| ||    ___||   | ||  "
@@ -80,12 +66,6 @@ print colorama.Fore.RED     + "| |_|   ||  |_|  ||       ||       ||   | |  _   
 print colorama.Fore.YELLOW  + "|       ||       || ||_|| ||   _   ||   | | | |   ||    _  ||   |___ |   |  | |"
 print colorama.Fore.YELLOW  + "|______| |_______||_|   |_||__| |__||___| |_|  |__||___| |_||_______||___|  |_|"
 print ""
-
-
-
-
-
-
 
 parser = argparse.ArgumentParser(description='Welcome to domainker help page')
 parser.add_argument('-d', type=str, help='Domains list')
@@ -100,14 +80,10 @@ if  args.d == None:
 	print colorama.Fore.RED + "[!] Please select the domains file using -d argument"
 	sys.exit()
 
-
-
 LinksFile		= open(args.d,"r").readlines()
 NumberOfThreads = args.t
 ThreadTimeOut 	= args.T
 RequestTimeOut  = args.rt
-
-
 
 if NumberOfThreads is None:
 	NumberOfThreads = 10
@@ -122,24 +98,12 @@ if RequestTimeOut is None:
 print colorama.Fore.YELLOW + "[INFO]\n  |_> Number of thread(s): {}\n  |_> Thread(s) timeout: {}\n  |_> Request(s) timeout: {}\n\n".format(NumberOfThreads,ThreadTimeOut,RequestTimeOut)
 raw_input(colorama.Fore.CYAN + "[R] Press enter to start")
 
-
-
-
 for Index,URL in enumerate(LinksFile):
-
 	URL = URL.strip()
-
 	if (len(LinksFile)-Index) < NumberOfThreads:
-
 		threadManager(CheckURL,[URL,RequestTimeOut], (len(LinksFile)-Index)+1,ThreadTimeOut)
-
 	else:
-
 		threadManager(CheckURL,[URL,RequestTimeOut], NumberOfThreads,ThreadTimeOut)
-
-
-
-
 
 if args.o is not None:
 	#print colorama.Fore.GREEN + "[-] Saving to file"

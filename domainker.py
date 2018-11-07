@@ -68,8 +68,8 @@ parser = argparse.ArgumentParser(description='Welcome to domainker help page')
 parser.add_argument('-d', type=str, help='Domains list')
 parser.add_argument('-o', type=str, help='Output file')
 parser.add_argument('-t', type=int, help='Number of threads default=10')
-parser.add_argument('-T', type=int, help='Threads timeout default=60')
-parser.add_argument('-rt',type=int, help='Request timeout default=30')
+parser.add_argument('-T', type=int, help='Threads timeout default=5')
+parser.add_argument('-rt',type=int, help='Request timeout default=4')
 
 args = parser.parse_args()
 

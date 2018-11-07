@@ -5,6 +5,14 @@ So domainker acts as a checker for the domains
 
 ![](screenshots/0.png)
 
+# Install requirements
+```bash
+$ pip install colorama
+```
+# Python 3 support 
+This tool is currently on python 2.xx only 
+
+
 # How to use 
 Basic example
 ```bash

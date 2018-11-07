@@ -1,6 +1,6 @@
 # Domainker
 Domainker is a tool to check if a website is down or not with a multithreading support  
-This tool mainly for a bounty hunters that offent get a huge list of subdomains and alot of them isn't working  
+This tool mainly for a bounty hunters that often get a huge list of subdomains and alot of them isn't working  
 So domainker acts as a checker for the domains  
 
 ![](screenshots/0.png)

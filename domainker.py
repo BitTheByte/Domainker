@@ -27,14 +27,11 @@ def threadManager(function,Funcargs,Startthreshold,Threadtimeout=5):
 		del storeThreads[::]
 
 def CheckURL(URL,timeout):
-
 	if URL[0] == ".":
 		URL = URL[1::]
 
-
 	if 'http' not in URL[0:3]:
 		URL = "http://" + URL 
-
 	try:
 		CODE = str(requests.get(URL,timeout=timeout,verify=False).status_code)
 	except:

@@ -3,7 +3,7 @@ Domainker is a tool to check if a website is down or not with a multithreading s
 This tool mainly for a bounty hunters that often get a huge list of subdomains and alot of them isn't working  
 So domainker acts as a checker for this domains to speed up your progress  
 
-![](screenshots/0.png)
+![](screenshots/0.PNG)
 
 # Install requirements
 ```bash

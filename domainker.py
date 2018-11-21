@@ -10,11 +10,7 @@ from urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
 storeThreads = []
-R2XX = []
-R3XX = []
-R4XX = []
-R5XX = []
-DOWN = []
+RES = []
 
 def threadManager(function,Funcargs,Startthreshold,Threadtimeout=5):
 	if len(storeThreads) != Startthreshold:
@@ -35,23 +31,27 @@ def CheckURL(URL,timeout):
 	try:
 		CODE = str(requests.get(URL,timeout=timeout,verify=False).status_code)
 	except:
-		CODE = "down"
+		CODE = "DOWN"
 
 	if CODE[0] == "2":
-		R2XX.append(URL)
-		print colorama.Fore.GREEN  + "[2XX] {0}\n".format(URL),
+		RES.append((CODE,URL))
+		print colorama.Fore.GREEN  + "[{0}] {1}\n".format(CODE,URL),
+
 	if CODE[0] == "3":
-		R3XX.append(URL)
-		print colorama.Fore.YELLOW + "[3XX] {0}\n".format(URL),
+		RES.append((CODE,URL))
+		print colorama.Fore.YELLOW + "[{0}] {1}\n".format(CODE,URL),
+
 	if CODE[0] == "4":
-		R4XX.append(URL)
-		print colorama.Fore.BLUE   + "[4XX] {0}\n".format(URL),
+		RES.append((CODE,URL))
+		print colorama.Fore.BLUE   + "[{0}] {1}\n".format(CODE,URL),
+
 	if CODE[0] == "5":
-		R5XX.append(URL)
-		print colorama.Fore.CYAN   + "[5XX] {0}\n".format(URL),
-	if CODE == "down":
-		DOWN.append(URL)
-		print colorama.Fore.RED    + "[DOWN] {0}\n".format(URL),
+		RES.append((CODE,URL))
+		print colorama.Fore.CYAN   + "[{0}] {1}\n".format(CODE,URL),
+
+	if CODE == "DOWN":
+		RES.append((CODE,URL))
+		print colorama.Fore.RED    + "[{0}] {1}\n".format(CODE,URL),
 
 
 colorama.init(autoreset=True)
@@ -93,7 +93,7 @@ if RequestTimeOut is None:
 
 
 print colorama.Fore.YELLOW + "[INFO]\n  |_> Number of thread(s): {}\n  |_> Thread(s) timeout: {}\n  |_> Request(s) timeout: {}\n\n".format(NumberOfThreads,ThreadTimeOut,RequestTimeOut)
-raw_input(colorama.Fore.CYAN + "[R] Press enter to start")
+raw_input(colorama.Fore.CYAN + "[R] Press enter to start\n")
 
 for Index,URL in enumerate(LinksFile):
 	URL = URL.strip()
@@ -103,16 +103,9 @@ for Index,URL in enumerate(LinksFile):
 		threadManager(CheckURL,[URL,RequestTimeOut], NumberOfThreads,ThreadTimeOut)
 
 if args.o is not None:
-	#print colorama.Fore.GREEN + "[-] Saving to file"
-	for R in R2XX:
-		open(args.o,"a+").write("[2XX] %s\n" % R)
-	for R in R3XX:
-		open(args.o,"a+").write("[3XX] %s\n" % R)
-	for R in R4XX:
-		open(args.o,"a+").write("[4XX] %s\n" % R)
-	for R in R5XX:
-		open(args.o,"a+").write("[5XX] %s\n" % R)
-	for R in DOWN:
-		open(args.o,"a+").write("[DOWN] %s\n" % R)
+	for code,url in sorted(RES):
+		open(args.o ,"a").write("[{}] {}\n".format(code,url))
+
+
 
 raw_input(colorama.Fore.YELLOW + "[*] Finished .. press enter to exit")

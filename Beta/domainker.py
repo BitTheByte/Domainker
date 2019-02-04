@@ -18,7 +18,7 @@ def main(host,timeout=30):
 		AWS = ckaws(host) if args.aws else None,
 	)
 
-if not args.url == 1 and not args.aws == 1:
+if not args.url == 1 and not args.aws == 1 and args.dns==1:
 	cli.no_options()
 
 

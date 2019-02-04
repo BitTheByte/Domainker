@@ -109,4 +109,3 @@ if args.o is not None:
 
 
 raw_input(colorama.Fore.YELLOW + "[*] Finished .. press enter to exit")
-input("\n"+colorama.Fore.YELLOW + "[*] Finished ..  Enter to exit")

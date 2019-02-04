@@ -22,11 +22,16 @@ Basic output example
 ```bash
 $ python domainker.py -d domains.txt -o out.txt
 ```
-
 Advanced example
 ```bash
 $ python domainker.py -d domains.txt -t 50 -T 5 -rt 3 -o out.txt
 ```
+AWS Checking
+```bash
+$ python domainker.py -d domains.txt --aws
+```
+
+
 
 # File format
 I want add different formats at the future but currenlty this tool only support this format

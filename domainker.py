@@ -4,7 +4,7 @@ import requests
 import os
 try:
 	import queue
-execpt:
+except:
 	import Queue as queue
 import threading
 import sys

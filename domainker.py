@@ -1,7 +1,11 @@
+#!/usr/bin/env python
 from __future__ import print_function
 import requests
 import os
-import queue
+try:
+	import queue
+execpt:
+	import Queue as queue
 import threading
 import sys
 import colorama

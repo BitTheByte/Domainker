@@ -26,10 +26,7 @@ Advanced example
 ```bash
 $ python domainker.py -d domains.txt -t 50 -T 5 -rt 3 -o out.txt
 ```
-AWS Checking
-```bash
-$ python domainker.py -d domains.txt --aws
-```
+
 
 
 

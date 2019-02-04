@@ -2,6 +2,7 @@
 from __future__ import print_function
 import requests
 import os
+import time
 try:
 	import queue
 except:
@@ -75,12 +76,13 @@ def scan_aws(url,timeout):
 
 	if not args.aws: return -999
 
-	while 1:
+	for _ in range(10):
 		try:
 			aws = requests.get("http://%s.s3.amazonaws.com" % url,timeout=timeout)
 			if aws.status_code == 404: return 0
 			return 1
 		except:
+			time.sleep(1)
 			pass
 
 def scan_url(url,timeout):

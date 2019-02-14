@@ -8,6 +8,7 @@ def read_file(path):
 def uri(url):
 	if not url.startswith('http://'):
 		return ("http://" + url)
-
-	if not url.startswith('https://'):
+	elif not url.startswith('https://'):
 		return ("https://" + url)
+	else:
+		return (url)

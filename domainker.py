@@ -1,6 +1,7 @@
 from lib.utils.helpers import read_file
 from lib.utils.multi import Threader
 from lib.utils.helpers import uri
+from lib.utils.helpers import durl
 from lib.modules.url import ckurl
 from lib.modules.aws import ckaws
 from lib.modules.cname import chkcname
@@ -15,7 +16,7 @@ def main(host,timeout=30):
 		HOST= uri(host),
 		URL = ckurl(uri(host)) if args.url else None,
 		DNS = chkcname(host) if args.dns else None,
-		AWS = ckaws(host) if args.aws else None,
+		AWS = ckaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
 	)
 
 cli.banner()

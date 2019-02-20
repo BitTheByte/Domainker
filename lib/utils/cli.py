@@ -54,5 +54,5 @@ def banner():
 	print (colorama.Fore.YELLOW  + "|       ||       || ||_|| ||   _   ||   | | | |   ||    _  ||   |___ |   |  | |")
 	print (colorama.Fore.YELLOW  + "|______| |_______||_|   |_||__| |__||___| |_|  |__||___| |_||_______||___|  |_|\n")
 	print (colorama.Fore.LIGHTRED_EX + "            > [ BY ] Ahmed Ezzat (BitTheByte) & Abdulrhman adel (k3r1it0)")
-	print (colorama.Fore.LIGHTBLACK_EX + "            > [ Linkedin ] https://linkedin.com/in/abdulrhmanadel/")
+	print (colorama.Fore.LIGHTBLACK_EX + "            > [ Linkedin ] https://linkedin.com/in/abdulrhmanadel")
 	print (colorama.Fore.LIGHTBLACK_EX + "            > [ Github ] https://github.com/BitTheByte\n")

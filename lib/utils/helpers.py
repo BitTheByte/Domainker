@@ -14,3 +14,12 @@ def uri(url):
 		return url[1::]
 	else:
 		return (url)
+
+def durl(url):
+	url = url.replace("https://","")
+	url = url.replace("http://","")
+	if url.endswith("/"):
+		url = url[0:-1]
+	if url.startswith("."):
+		url =  url[1::]
+	return url

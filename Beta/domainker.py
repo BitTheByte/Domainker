@@ -27,3 +27,6 @@ cli.start_pause()
 for host in read_file(args.domains): thread.put(main, [host])
 thread.finish_all()
 cli.end_pause()
+
+if args.output != None:
+	cli.save_log(args.output)

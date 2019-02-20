@@ -28,8 +28,8 @@ $ python domainker --help
 ```
 - Create output file [--output/-o file_name]
 - Threads count [--threads/-t number]
-- Thread timeout [--thread-timeout/-T secounds]
-- Request timeout [--request-timeout/-rt secounds]
+- Thread timeout [--thread-timeout/-T seconds]
+- Request timeout [--request-timeout/-rt seconds]
 
 
 # Format 

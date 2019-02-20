@@ -8,6 +8,7 @@ log = ""
 lock = Lock()
 colorama.init(autoreset=True)
 
+
 def pprint(**kw):
 	global log
 
@@ -19,7 +20,7 @@ def pprint(**kw):
 
 	with lock:
 		log += fmt
-	print(fmt,end='')
+		print(fmt,end='')
 
 def no_options():
 	print('[ERR] Please choose a module')

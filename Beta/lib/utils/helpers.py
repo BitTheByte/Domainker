@@ -10,5 +10,7 @@ def uri(url):
 		return ("http://" + url)
 	elif not url.startswith('https://'):
 		return ("https://" + url)
+	elif url.startswith("."):
+		return url[1::]
 	else:
 		return (url)

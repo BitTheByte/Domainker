@@ -2,7 +2,7 @@
 My personal bugbounty tool
 
 # How to use
-I devolped this tool to be easily managed and upgraded so i created it as small plugin systems connected together
+I developed this tool to be easily managed and upgraded so i created it as small plugin systems connected together
 
 ## Plugins and usage
 ```

@@ -9,7 +9,7 @@ requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
 upload_name = 'domainker_aws_poc.html'
 upload_body = """<html>
-<!-- TAKE_OVER_DONE -->
+<!-- DOMAINKER_TAKEOVER(This is a vuln host) -->
 </html>"""
 
 def tkaws(bucket):

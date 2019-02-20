@@ -6,14 +6,13 @@ def read_file(path):
 			yield line.strip()
 			
 def uri(url):
+	if url.startswith("."):
+		url = url[1::]
 	if not url.startswith('http://'):
-		return ("http://" + url)
+		url =  ("http://" + url)
 	elif not url.startswith('https://'):
-		return ("https://" + url)
-	elif url.startswith("."):
-		return url[1::]
-	else:
-		return (url)
+		url = ("https://" + url)
+	return (url)
 
 def durl(url):
 	url = url.replace("https://","")

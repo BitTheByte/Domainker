@@ -43,7 +43,6 @@ def end_pause():
 def info(args):
 	print("[INFO]\n  |_> Number of thread(s): {}\n  |_> Thread(s) timeout: {}\n  |_> Request(s) timeout: {}\n".format(args.threads,args.thread_timeout,args.request_timeout))
 
-https://linkedin.com/in//
 
 def banner():
 	print (colorama.Fore.YELLOW  + " ______   _______  __   __  _______  ___   __    _  ___   _  _______  ______   ")

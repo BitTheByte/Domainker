@@ -6,7 +6,7 @@ I developed this tool to be easily managed and upgraded so i created it as small
 
 ## Plugins and usage
 ```
-lib\modules\aws.py   : [--aws] Checks if the host is regirested on amazon (Can be useful in Sub-domain TakerOver)
+lib\modules\aws.py   : [--aws] Checks if the host is regirested on amazon (Use -x to run Auto-Takeover)
 lib\modules\cname.py : [--dns] Returns the host cname
 lib\modules\url.py   : [--url] Returns host response code
 ```

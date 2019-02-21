@@ -28,7 +28,7 @@ $ python domainker --help
 ```
 - Create output file [--output/-o file_name]
 - Threads count [--threads/-t number]
-- Takeover aws [--aws-takeover/-x] Add your AWS account creds at `lib\modules\aws.py`
+- Takeover aws [--aws-takeover/-x]
 - Thread timeout [--thread-timeout/-T seconds]
 - Request timeout [--request-timeout/-rt seconds]
 

@@ -1,7 +1,7 @@
 import requests
 import colorama
-from urllib3.exceptions import InsecureRequestWarning 
-requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+import requests.packages.urllib3
+requests.packages.urllib3.disable_warnings()
 
 
 def ckurl(url,timeout=60):

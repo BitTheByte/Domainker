@@ -11,8 +11,10 @@ colorama.init(autoreset=True)
 
 def pprint(**kw):
 	global log
-
-	fmt = "\n[!] %s%s%s\n"% (colorama.Fore.LIGHTWHITE_EX,kw['HOST'],colorama.Fore.RESET)
+	
+	fmt = "\n%s[%s*%s] %s%s%s%s\n"% (
+		colorama.Fore.BLUE, colorama.Fore.RED,colorama.Fore.BLUE,colorama.Fore.RESET
+		,colorama.Fore.LIGHTWHITE_EX,kw['HOST'],colorama.Fore.RESET)
 	for key in kw:
 		if kw[key] != None and key != 'HOST' and not str(key).startswith('__'):
 			fmt += " |_> [{}]: {}\n".format(key,kw[key])

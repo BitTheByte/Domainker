@@ -13,7 +13,7 @@ def pprint(**kw):
 	global log
 	
 	fmt = "\n%s[%s*%s] %s%s%s%s\n"% (
-		colorama.Fore.BLUE, colorama.Fore.RED,colorama.Fore.BLUE,colorama.Fore.RESET
+		colorama.Fore.BLUE, colorama.Fore.LIGHTRED_EX,colorama.Fore.BLUE,colorama.Fore.RESET
 		,colorama.Fore.LIGHTWHITE_EX,kw['HOST'],colorama.Fore.RESET)
 	for key in kw:
 		if kw[key] != None and key != 'HOST' and not str(key).startswith('__'):

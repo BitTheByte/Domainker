@@ -6,7 +6,8 @@ I developed this tool to be easily managed and upgraded so i created it as small
 
 ## Plugins and usage
 ```
-lib\modules\aws.py   : [--aws] Checks if the host is regirested on amazon (Use -x to run Auto-Takeover)
+lib\modules\crlf.py  : [--crlf] Check if host is vulnerable to CRLF
+lib\modules\aws.py   : [--aws] Check if target is hosted on amazon (Use -x to run Auto-Takeover)
 lib\modules\cname.py : [--dns] Returns the host cname
 lib\modules\url.py   : [--url] Returns host response code
 ```
@@ -17,10 +18,11 @@ lib\modules\url.py   : [--url] Returns host response code
  $ python domainker.py -d mydomains_list.txt --url
  $ python domainker.py -d mydomains_list.txt --dns
  $ python domainker.py -d mydomains_list.txt --aws
+ $ python domainker.py -d mydomains_list.txt --crlf
  ```
 You could also use multiple plugins at the same time
 ```
-$ python domainker.py -d mydomains_list.txt --url --dns --aws
+$ python domainker.py -d mydomains_list.txt --url --dns --aws ...
 ```
 ## Options
 ```

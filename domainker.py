@@ -14,10 +14,10 @@ thread = Threader(args.threads)
 
 def main(host,timeout=30):
 	cli.pprint(
-		HOST= uri(host),
-		URL = ckurl(uri(host)) if args.url else None,
-		DNS = chkcname(host) if args.dns else None,
-		AWS = ckaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
+		HOST = uri(durl(host)),
+		URL  = ckurl(uri(durl(host))) if args.url else None,
+		DNS  = chkcname(host) if args.dns else None,
+		AWS  = ckaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
 		CLRF = chkcrlf(uri(durl(host)),timeout) if args.crlf else None
 	)
 

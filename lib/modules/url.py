@@ -15,4 +15,4 @@ def ckurl(url,timeout=60):
  
 
 	except:
-		return colorama.Fore.RED + 'Down' + colorama.Fore.RESET     
+		return colorama.Fore.RED + 'Unreachable' + colorama.Fore.RESET     

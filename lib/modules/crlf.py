@@ -42,4 +42,4 @@ def chkcrlf(url,timeout=30):
         return safe_msg % (Fore.RED)
 
     except Exception as e:
-        return "%sError occured" % (Fore.RED)
+        return "%sDown Host" % (Fore.RED)

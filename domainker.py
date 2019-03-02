@@ -17,7 +17,7 @@ def main(host,timeout=30):
 		cli.pprint(
 			HOST = uri(durl(host)),
 			URL  = ckurl(uri(durl(host))) if args.url else None,
-			DNS  = chkcname(host) if args.dns else None,
+			DNS  = chkcname(durl(host)) if args.dns else None,
 			AWS  = ckaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
 			CRLF = chkcrlf(uri(durl(host)),timeout) if args.crlf else None
 		)

@@ -1,5 +1,7 @@
 from colorama import Fore
 import requests
+from urllib3.exceptions import InsecureRequestWarning 
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
 vuln_msg = "%sVulnerable %s-> %s%s%s"
 safe_msg = "%sNot vulnerable"

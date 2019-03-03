@@ -16,7 +16,7 @@ inject_payloads = [
 
 
 def chkcrlf(url,timeout=30):
-    report = "\n"
+
     results = []
     for inject_payload in inject_payloads:
 

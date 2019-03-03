@@ -2,9 +2,9 @@ from lib.utils.helpers import read_file
 from lib.utils.multi import Threader
 from lib.utils.helpers import uri
 from lib.utils.helpers import durl
-from lib.modules.url import ckurl
+from lib.modules.url import chkurl
 from lib.modules.crlf import chkcrlf
-from lib.modules.aws import ckaws
+from lib.modules.aws import chkaws
 from lib.modules.cname import chkcname
 from lib.utils.args import args
 from lib.utils import cli
@@ -16,9 +16,9 @@ def main(host,timeout=30):
 	if host.strip():
 		cli.pprint(
 			HOST = uri(durl(host)),
-			URL  = ckurl(uri(durl(host))) if args.url else None,
+			URL  = chkurl(uri(durl(host))) if args.url else None,
 			DNS  = chkcname(durl(host)) if args.dns else None,
-			AWS  = ckaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
+			AWS  = chkaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
 			CRLF = chkcrlf(uri(durl(host)),timeout) if args.crlf else None
 		)
 

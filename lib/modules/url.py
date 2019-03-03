@@ -4,7 +4,7 @@ import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 
 
-def ckurl(url,timeout=60):
+def chkurl(url,timeout=60):
 	try:
 		res = str(requests.get(url,timeout=timeout,verify=False).status_code)
 

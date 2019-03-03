@@ -37,7 +37,7 @@ def tkaws(bucket):
 
 
 
-def ckaws(bucket,takeover,timeout=60):
+def chkaws(bucket,takeover,timeout=60):
 	try:
 		aws = requests.head("http://%s.s3.amazonaws.com" % bucket,timeout=timeout)
 		if aws.status_code == 404:

@@ -4,7 +4,7 @@ import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 
 vuln_msg = "%sVulnerable %s-> %s%s%s\n"
-safe_msg = "%sNot vulnerable\n"
+safe_msg = "%sNot vulnerable%s\n"
 inject_header  = "controlled-header"
 inject_value   = "controlled-value"
 
@@ -48,7 +48,7 @@ def chkcrlf(url,timeout=30):
                                     Fore.RESET
                                 )])
             
-            results.append(["s",safe_msg % (Fore.RED)])
+            results.append(["s",safe_msg % (Fore.RED,Fore.RESET)])
 
         except Exception as e:
             results.append(["f","%sUnreachable" % (Fore.RED)])

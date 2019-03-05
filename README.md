@@ -36,7 +36,7 @@ $ python domainker --help
 
 
 # Format 
-I want to add different formats at the future but currenlty this tool only support this format for the domains file
+I want to add different formats at the future but currently this tool only supports this formats for the input file
 ```
 https://sub.domain.com  
 http://sub.domain.com  

@@ -17,7 +17,7 @@ def pprint(**kw):
 		,colorama.Fore.LIGHTWHITE_EX,kw['HOST'],colorama.Fore.RESET)
 	for key in kw:
 		if kw[key] != None and key != 'HOST' and not str(key).startswith('__'):
-			fmt += " |_> [{}]: {}\n".format(key,kw[key])
+			fmt += " |__> [{}]: {}\n".format(key,kw[key])
 	fmt += "%s" % colorama.Fore.RESET
 
 	with lock:

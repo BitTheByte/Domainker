@@ -1,9 +1,11 @@
-
-
 def read_file(path):
-	with open(path,"r") as file:
-		for line in file:
-			yield line.strip()
+	try:
+		with open(path,"r") as file:
+			for line in file:
+				yield line.strip()
+	except Exception as e:
+		print(e)
+
 			
 def uri(url):
 	if url.startswith("."):

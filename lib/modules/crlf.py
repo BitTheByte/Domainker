@@ -3,8 +3,8 @@ import requests
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 
-vuln_msg = "%sVulnerable %s-> %s%s%s\n"
-safe_msg = "%sNot vulnerable%s\n"
+vuln_msg = "%sVulnerable %s-> %s%s%s"
+safe_msg = "%sNot vulnerable%s"
 inject_header  = "controlled-header"
 inject_value   = "controlled-value"
 

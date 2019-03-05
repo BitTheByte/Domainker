@@ -8,11 +8,11 @@ def chkurl(url,timeout=60):
 	try:
 		res = str(requests.get(url,timeout=timeout,verify=False).status_code)
 
-		if res[0] == "2": return colorama.Fore.GREEN  + res + colorama.Fore.RESET     
-		if res[0] == "3": return colorama.Fore.YELLOW + res + colorama.Fore.RESET      
-		if res[0] == "4": return colorama.Fore.BLUE   + res + colorama.Fore.RESET      
-		if res[0] == "5": return colorama.Fore.RED    + res + colorama.Fore.RESET     
+		if res[0] == "2": return colorama.Fore.GREEN  + res
+		if res[0] == "3": return colorama.Fore.YELLOW + res 
+		if res[0] == "4": return colorama.Fore.BLUE   + res 
+		if res[0] == "5": return colorama.Fore.RED    + res
  
 
 	except:
-		return colorama.Fore.RED + 'Unreachable' + colorama.Fore.RESET     
+		return colorama.Fore.RED + 'Unreachable'

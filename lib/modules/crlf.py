@@ -51,7 +51,7 @@ def chkcrlf(url,timeout=30):
             results.append(["s",safe_msg % (Fore.RED,Fore.RESET)])
 
         except Exception as e:
-            results.append(["f","%sUnreachable" % (Fore.RED)])
+            results.append(["f","%sUnreachable%s" % (Fore.RED,Fore.RESET)])
 
     for result in results:
         status,msg = result

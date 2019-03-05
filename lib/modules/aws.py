@@ -27,11 +27,11 @@ def tkaws(bucket):
 						("http://{bucket}.s3.amazonaws.com/{target}".format(bucket=bucket,target=upload_name)
 					))
 		else:
-			return "%sFile uploaded and not accessable%s" %(Fore.BLUE,Fore.RESET)
+			return "%sFile uploaded and not accessable" %(Fore.BLUE)
 
 	except Exception as e:
 		if "Access Denied" in str(e):
-			return "%sAccess Denied%s" %(Fore.RED,Fore.RESET)
+			return "%sAccess Denied" %(Fore.RED)
 		else:
 			return e
 
@@ -41,12 +41,12 @@ def chkaws(bucket,takeover,timeout=60):
 	try:
 		aws = requests.head("http://%s.s3.amazonaws.com" % bucket,timeout=timeout)
 		if aws.status_code == 404:
-			return '%sNot hosted on AWS%s' % (Fore.RED,Fore.RESET)
+			return '%sNot hosted on AWS' % (Fore.RED)
 		
 		if takeover:
 			return tkaws(bucket)
 		else:
-			return '%sHosted on AWS %s-> %s%s%s' % (Fore.GREEN,Fore.YELLOW,Fore.LIGHTWHITE_EX,"http://%s.s3.amazonaws.com" % bucket,Fore.RESET)
+			return '%sHosted on AWS %s-> %s%s' % (Fore.GREEN,Fore.YELLOW,Fore.LIGHTWHITE_EX,"http://%s.s3.amazonaws.com" % bucket)
 
 	except Exception as e:
 		pass

@@ -10,7 +10,6 @@ headers_list = [
 ]
 
 def chkurl(url,check_headers,timeout=60):
-	output = ""
 	try:
 		res = requests.get(url,timeout=timeout,verify=False)
 		if str(res.status_code)[0] == "2": output= colorama.Fore.GREEN  + str(res.status_code)

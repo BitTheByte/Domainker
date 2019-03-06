@@ -47,7 +47,7 @@ else: cli.no_options()
 
 cli.info(args)
 
-if args.input: main(args.input)
+if args.input: main(args.input,args.request_timeout)
 else:
 	thread = Threader(args.threads)
 	for host in read_file(args.domains): thread.put(main, [host,args.request_timeout])

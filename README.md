@@ -15,15 +15,16 @@ lib\modules\url.py   : [--url] Return host response code
 
 ## Basic usage
  ```
+ $ python domainker.py -i google.com [.. Plugins]
  $ python domainker.py -d mydomains_list.txt [.. Plugins]
  $ python domainker.py -d mydomains_list.txt --url
  $ python domainker.py -d mydomains_list.txt --dns
- $ python domainker.py -d mydomains_list.txt --aws
- $ python domainker.py -d mydomains_list.txt --crlf
  ```
 You could also use multiple plugins at the same time
 ```
 $ python domainker.py -d mydomains_list.txt --url --dns --aws ...
+$ python domainker.py -i google.com --url --dns --aws ...
+
 ```
 ## Options
 ```

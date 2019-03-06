@@ -6,7 +6,6 @@ from colorama import Fore
 
 forwarded_host = "bitthebyte.com"
 
-
 def chkpoisoning(host,timeout):
 	try:
 		request = requests.get(host,headers={
@@ -16,7 +15,6 @@ def chkpoisoning(host,timeout):
 			},verify=False,timeout=timeout)
 
 		if forwarded_host in request.content:
-
 			return "%sMaybe vulnerable - [X-Forwarded-Host] reflected at response" % (Fore.GREEN)
 
 		if request.history:
@@ -27,5 +25,3 @@ def chkpoisoning(host,timeout):
 		return "%sNot vulnerable" % Fore.RED
 	except:
 		return "%sUnreachable" % Fore.RED
-
-

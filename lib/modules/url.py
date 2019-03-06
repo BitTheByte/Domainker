@@ -3,16 +3,29 @@ import colorama
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 
+headers_list = [
+	"X-Frame-Options",
+	"X-XSS-Protection",
+	"X-Content-Type-Options"
+]
 
-def chkurl(url,timeout=60):
+def chkurl(url,check_headers,timeout=60):
+	output = ""
 	try:
-		res = str(requests.get(url,timeout=timeout,verify=False).status_code)
+		res = requests.get(url,timeout=timeout,verify=False)
+		if str(res.status_code)[0] == "2": output= colorama.Fore.GREEN  + str(res.status_code)
+		if str(res.status_code)[0] == "3": output= colorama.Fore.YELLOW + str(res.status_code)
+		if str(res.status_code)[0] == "4": output= colorama.Fore.BLUE   + str(res.status_code)
+		if str(res.status_code)[0] == "5": output= colorama.Fore.RED    + str(res.status_code)
+		
+		if check_headers:
+			for header in headers_list:
+				for request_h in res.headers:
+					if request_h.lower() == header.lower():
+						break
+				else:
+					output += "%s\n        |> [Missing header]> %s" % (colorama.Fore.WHITE,header)
+ 		return output
 
-		if res[0] == "2": return colorama.Fore.GREEN  + res
-		if res[0] == "3": return colorama.Fore.YELLOW + res 
-		if res[0] == "4": return colorama.Fore.BLUE   + res 
-		if res[0] == "5": return colorama.Fore.RED    + res
- 
-
-	except:
+	except Exception as e:
 		return colorama.Fore.RED + 'Unreachable'

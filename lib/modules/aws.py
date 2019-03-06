@@ -1,4 +1,4 @@
-from cStringIO import StringIO
+from io import StringIO
 import requests
 from colorama import Fore
 import boto3

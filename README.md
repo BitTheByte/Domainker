@@ -32,6 +32,7 @@ $ python domainker --help
 - Create output file [--output/-o file_name]
 - Threads count [--threads/-t number]
 - Takeover aws [--aws-takeover/-x]
+- Missing headers [--headers/-H]
 - Thread timeout [--thread-timeout/-T seconds]
 - Request timeout [--request-timeout/-rt seconds]
 

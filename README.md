@@ -24,7 +24,6 @@ You could also use multiple plugins at the same time
 ```
 $ python domainker.py -d mydomains_list.txt --url --dns --aws ...
 $ python domainker.py -i google.com --url --dns --aws ...
-
 ```
 ## Options
 ```

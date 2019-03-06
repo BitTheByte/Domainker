@@ -7,15 +7,14 @@ from lib.utils.multi import Threader
 from lib.utils.args import args
 from lib.utils import cli
 
+from lib.modules.experimental.cache_poisoning import chkpoisoning
 from lib.modules.cname import chkcname
 from lib.modules.crlf import chkcrlf
 from lib.modules.url import chkurl
 from lib.modules.aws import chkaws
-from lib.modules.experimental.cache_poisoning import chkpoisoning
+
 
 __VERSION__ = 1.0
-
-
 modules = [
 	args.url,
 	args.aws,
@@ -24,15 +23,10 @@ modules = [
 	args.cache_poisoning
 ]
 
-
-
-
-def URL(host):
-	return uri(durl(host))
+def URL(host): return uri(durl(host))
 
 def main(host,timeout=30):
 	if not host.strip(): return
-
 	cli.pprint(
 		HOST  = URL(host),
 		URL   = chkurl(URL(host),timeout) if args.url else None,
@@ -49,16 +43,14 @@ update(__VERSION__)
 
 for module in modules:
 	if module: break
-else:
-	cli.no_options()
+else: cli.no_options()
 
 cli.info(args)
 
-if args.input:
-	main(args.input)
+if args.input: main(args.input)
 else:
 	thread = Threader(args.threads)
-	for host in read_file(args.domains): thread.put(main, [host])
+	for host in read_file(args.domains): thread.put(main, [host,args.request_timeout])
 	thread.finish_all()
 
 if args.output != None: cli.save_log(args.output)

@@ -8,7 +8,7 @@ def update(current_version):
 			print(" %s[WARNING] %sYou are using an old version of this tool"%(Fore.RED,Fore.LIGHTWHITE_EX))
 	except:
 		pass
-of
+
 def read_file(path):
 	try:
 		with open(path,"r") as file:

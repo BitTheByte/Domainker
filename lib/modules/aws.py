@@ -17,7 +17,7 @@ upload_body = """<html>
 def tkaws(bucket):
 	s3 = boto3.client('s3', config=Config(signature_version=UNSIGNED))
 	try:
-		s3.put_object(Bucket=bucket, Key=upload_name,ACL='public-read', Body=StringIO(upload_body).read())
+		s3.put_object(Bucket=bucket, Key=upload_name,ACL='public-read', Body=StringIO(unicode(upload_body)).read())
 		response = requests.get("http://{bucket}.s3.amazonaws.com/{target}".format(bucket=bucket,target=upload_name)).content
 		if upload_body in response:
 			return "%sFile uploaded and accessable %s->%s %s" %(

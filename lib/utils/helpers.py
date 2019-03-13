@@ -5,10 +5,10 @@ def update(current_version):
 	try:
 		remote_version = float(get("https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/version").content.strip())
 		if remote_version > current_version:
-			print(" %s[WARNING] %sYou are using an old version from this tool"%(Fore.RED,Fore.LIGHTWHITE_EX))
+			print(" %s[WARNING] %sYou are using an old version of this tool"%(Fore.RED,Fore.LIGHTWHITE_EX))
 	except:
 		pass
-
+of
 def read_file(path):
 	try:
 		with open(path,"r") as file:

@@ -10,7 +10,7 @@ lib\modules\experimental\cache_poisoning.py : [--cache-poisoning] Check if the h
 lib\modules\crlf.py  : [--crlf] Check if host is vulnerable to CRLF
 lib\modules\aws.py   : [--aws] Check if target is hosted on amazon (Use -x to run Auto-Takeover)
 lib\modules\cname.py : [--dns] Return host cname
-lib\modules\url.py   : [--url] Return host response code (Use -H to check for missing headers)
+lib\modules\url.py   : [--url] Return host response code also detects directory listing (Use -H to check for missing headers)
 ```
 
 ## Basic usage

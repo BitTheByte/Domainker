@@ -9,13 +9,23 @@ headers_list = [
 	"X-Content-Type-Options"
 ]
 
+dir_listing = [
+	"Index of",
+	'alt="[DIR]"'
+]
+
 def chkurl(url,check_headers,timeout=60):
 	try:
 		res = requests.get(url,timeout=timeout,verify=False)
-		if str(res.status_code)[0] == "2": output= colorama.Fore.GREEN  + str(res.status_code)
-		if str(res.status_code)[0] == "3": output= colorama.Fore.YELLOW + str(res.status_code)
-		if str(res.status_code)[0] == "4": output= colorama.Fore.BLUE   + str(res.status_code)
-		if str(res.status_code)[0] == "5": output= colorama.Fore.RED    + str(res.status_code)
+		if str(res.status_code)[0] == "2": output = colorama.Fore.GREEN  + str(res.status_code)
+		if str(res.status_code)[0] == "3": output = colorama.Fore.YELLOW + str(res.status_code)
+		if str(res.status_code)[0] == "4": output = colorama.Fore.BLUE   + str(res.status_code)
+		if str(res.status_code)[0] == "5": output = colorama.Fore.RED    + str(res.status_code)
+
+		for t in dir_listing:
+			if t in res.content:
+				output += " - [Directory listing enabled]"
+				break
 		
 		if check_headers:
 			for header in headers_list:

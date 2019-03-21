@@ -5,8 +5,7 @@ requests.packages.urllib3.disable_warnings()
 
 headers_list = [
 	"X-Frame-Options",
-	"X-XSS-Protection",
-	"X-Content-Type-Options"
+	"X-XSS-Protection"
 ]
 
 dir_listing = [
@@ -22,9 +21,18 @@ def chkurl(url,check_headers,timeout=60):
 		if str(res.status_code)[0] == "4": output = colorama.Fore.BLUE   + str(res.status_code)
 		if str(res.status_code)[0] == "5": output = colorama.Fore.RED    + str(res.status_code)
 
+
+		if res.status_code == 200 and 'http://' in res.url:
+			output+= " %s-[OVER HTTP]%s" % (colorama.Fore.RED,colorama.Fore.RESET)
+		else:
+			if res.history:
+				if 'http://' in res.history[-1].url:
+					output+= " %s-[OVER HTTP]%s" % (colorama.Fore.RED,colorama.Fore.RESET)
+
+
 		for t in dir_listing:
 			if t in res.content:
-				output += " - [Directory listing enabled]"
+				output += " %s-[DIRECTORY LISTING]%s" % (colorama.Fore.RED,colorama.Fore.RESET)
 				break
 		
 		if check_headers:
@@ -33,7 +41,7 @@ def chkurl(url,check_headers,timeout=60):
 					if request_h.lower() == header.lower():
 						break
 				else:
-					output += "%s\n        |> [Missing header]> %s" % (colorama.Fore.WHITE,header)
+					output += "%s\n        |> [MISSING HEADER]> %s" % (colorama.Fore.WHITE,header)
  		return output
 
 	except Exception as e:

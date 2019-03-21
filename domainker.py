@@ -14,7 +14,7 @@ from lib.modules.url import chkurl
 from lib.modules.aws import chkaws
 
 
-__VERSION__ = 1.3
+__VERSION__ = 1.4
 modules = [
 	args.url,
 	args.aws,
@@ -28,7 +28,7 @@ def URL(host): return uri(durl(host))
 def main(host,timeout=30):
 	if not host.strip(): return
 	cli.pprint(
-		HOST  = URL(host),
+		HOST  = host,
 		URL   = chkurl(URL(host),args.headers,timeout) if args.url else None,
 		DNS   = chkcname(durl(host)) if args.dns else None,
 		AWS   = chkaws(durl(host),args.aws_takeover,timeout) if args.aws else None,

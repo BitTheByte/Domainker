@@ -14,21 +14,29 @@ dir_listing = [
 ]
 
 def chkurl(url,check_headers,timeout=60):
+
 	try:
 		res = requests.get(url,timeout=timeout,verify=False)
-		if str(res.status_code)[0] == "2": output = colorama.Fore.GREEN  + str(res.status_code)
-		if str(res.status_code)[0] == "3": output = colorama.Fore.YELLOW + str(res.status_code)
-		if str(res.status_code)[0] == "4": output = colorama.Fore.BLUE   + str(res.status_code)
-		if str(res.status_code)[0] == "5": output = colorama.Fore.RED    + str(res.status_code)
-
-
-		if res.status_code == 200 and 'http://' in res.url:
-			output+= " %s-[OVER HTTP]%s" % (colorama.Fore.RED,colorama.Fore.RESET)
+		
+		if res.history:
+			last_url = res.history[-1].headers['location']
+			output = '%s%i %s-> %s%s ' % (
+					colorama.Fore.YELLOW,
+					res.history[-1].status_code,
+					colorama.Fore.GREEN,
+					colorama.Fore.LIGHTWHITE_EX,
+					last_url
+				) 
 		else:
-			if res.history:
-				if 'http://' in res.history[-1].url:
-					output+= " %s-[OVER HTTP]%s" % (colorama.Fore.RED,colorama.Fore.RESET)
+			last_url = res.url
+			if str(res.status_code)[0] == "2": output = colorama.Fore.GREEN  + str(res.status_code)
+			if str(res.status_code)[0] == "3": output = colorama.Fore.YELLOW + str(res.status_code)
+			if str(res.status_code)[0] == "4": output = colorama.Fore.BLUE   + str(res.status_code)
+			if str(res.status_code)[0] == "5": output = colorama.Fore.RED    + str(res.status_code)
 
+
+		if 'http://' in last_url:
+			output += " %s-[OVER HTTP]%s" % (colorama.Fore.RED,colorama.Fore.RESET)
 
 		for t in dir_listing:
 			if t in res.content:

@@ -38,9 +38,6 @@ $ python domainker --help
 - Request timeout [--request-timeout/-rt seconds]
 
 
-also detects directory listing/communications over HTTP (Use -H to check for missing headers)
-
-
 # Format 
 I want to add different formats at the future but currently this tool only supports this formats for the input file
 ```

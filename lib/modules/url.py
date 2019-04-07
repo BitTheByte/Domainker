@@ -1,7 +1,13 @@
 import requests
 import colorama
 import requests.packages.urllib3
+from urlparse import urlparse
 requests.packages.urllib3.disable_warnings()
+
+interesting_files = [
+	"/.git",
+	"/.svn",
+]
 
 headers_list = [
 	"X-Frame-Options",
@@ -13,7 +19,7 @@ dir_listing = [
 	'alt="[DIR]"'
 ]
 
-def chkurl(url,check_headers,timeout=60):
+def chkurl(url,check_headers,check_interesting_files,timeout=60):
 
 	try:
 		res = requests.get(url,timeout=timeout,verify=False)
@@ -50,6 +56,23 @@ def chkurl(url,check_headers,timeout=60):
 						break
 				else:
 					output += "%s\n        |> [MISSING HEADER]> %s" % (colorama.Fore.WHITE,header)
+
+		if check_interesting_files:
+			for interesting_file in interesting_files:
+
+				res = requests.get(url + interesting_file,timeout=timeout,verify=False)
+
+				if res.history:
+					scanned = res.history[-1].headers['location']
+				else:
+					scanned = res.url
+
+				if not res.status_code in [404,503]:
+					if urlparse(url + interesting_file).netloc == urlparse(scanned).netloc:
+						if interesting_file in urlparse(scanned).path:
+							output += "%s\n        |> [INTERESTING DIRECTORY]> %s%s" % (colorama.Fore.GREEN,colorama.Fore.WHITE,res.url)
+
+
  		return output
 
 	except Exception as e:

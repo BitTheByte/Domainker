@@ -10,7 +10,7 @@ lib\modules\experimental\cache_poisoning.py : [--cache-poisoning] Check if the h
 lib\modules\crlf.py  : [--crlf] Check if host is vulnerable to CRLF
 lib\modules\aws.py   : [--aws] Check if target is hosted on amazon (Use -x to run Auto-Takeover)
 lib\modules\cname.py : [--dns] Return host cname
-lib\modules\url.py   : [--url] Return host response code also detects directory listing/communications over HTTP (Use -H to check for missing headers)
+lib\modules\url.py   : [--url] Return host response code [See the options for more details]
 ```
 
 ## Basic usage
@@ -33,8 +33,12 @@ $ python domainker --help
 - Threads count [--threads/-t number]
 - Takeover aws [--aws-takeover/-x]
 - Missing headers [--headers/-H]
+- Interesting files search [--interesting-files/-F]
 - Thread timeout [--thread-timeout/-T seconds]
 - Request timeout [--request-timeout/-rt seconds]
+
+
+also detects directory listing/communications over HTTP (Use -H to check for missing headers)
 
 
 # Format 

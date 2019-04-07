@@ -29,7 +29,7 @@ def main(host,timeout=30):
 	if not host.strip(): return
 	cli.pprint(
 		HOST  = URL(host),
-		URL   = chkurl(URL(host),args.headers,timeout) if args.url else None,
+		URL   = chkurl(URL(host),args.headers,args.interesting_files,timeout) if args.url else None,
 		DNS   = chkcname(durl(host)) if args.dns else None,
 		AWS   = chkaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
 		CRLF  = chkcrlf(URL(host),timeout) if args.crlf else None,

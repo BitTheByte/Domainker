@@ -36,7 +36,7 @@ def main(host,timeout=30):
 		AWS   = chkaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
 		CRLF  = chkcrlf(URL(host),timeout) if args.crlf else None,
 		CACHE = chkpoisoning(URL(host),timeout) if args.cache_poisoning else None,
-		STRUTS = chkstruts(URL(host)) if args.struts else None
+		STRUTS = chkstruts(URL(host),timeout) if args.struts else None
 	)
 
 

@@ -9,18 +9,20 @@ from lib.utils import cli
 
 from lib.modules.experimental.cache_poisoning import chkpoisoning
 from lib.modules.cname import chkcname
+from lib.modules.struts import chkstruts
 from lib.modules.crlf import chkcrlf
 from lib.modules.url import chkurl
 from lib.modules.aws import chkaws
 
 
-__VERSION__ = 1.6
+__VERSION__ = 1.7
 modules = [
 	args.url,
 	args.aws,
 	args.dns, 
 	args.crlf,
-	args.cache_poisoning
+	args.cache_poisoning,
+	args.struts
 ]
 
 def URL(host): return uri(durl(host))
@@ -33,7 +35,8 @@ def main(host,timeout=30):
 		DNS   = chkcname(durl(host)) if args.dns else None,
 		AWS   = chkaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
 		CRLF  = chkcrlf(URL(host),timeout) if args.crlf else None,
-		CACHE = chkpoisoning(URL(host),timeout) if args.cache_poisoning else None
+		CACHE = chkpoisoning(URL(host),timeout) if args.cache_poisoning else None,
+		STRUTS = chkstruts(URL(host)) if args.struts else None
 	)
 
 

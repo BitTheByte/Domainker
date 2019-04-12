@@ -7,10 +7,11 @@ I developed this tool to be easily managed and upgraded so i created it as small
 ## Plugins and usage
 ```
 lib\modules\experimental\cache_poisoning.py : [--cache-poisoning] Check if the host is vulnerable to cache poisoning
-lib\modules\crlf.py  : [--crlf] Check if host is vulnerable to CRLF
-lib\modules\aws.py   : [--aws] Check if target is hosted on amazon (Use -x to run Auto-Takeover)
-lib\modules\cname.py : [--dns] Return host cname
-lib\modules\url.py   : [--url] Return host response code [See the options for more details]
+lib\modules\crlf.py   : [--crlf] Check if host is vulnerable to CRLF
+lib\modules\aws.py    : [--aws] Check if target is hosted on amazon (Use -x to run Auto-Takeover)
+lib\modules\cname.py  : [--dns] Return host cname
+lib\modules\url.py    : [--url] Return host response code [See the options for more details]
+lib\modules\struts.py : [--struts] Perform struts attack
 ```
 
 ## Basic usage

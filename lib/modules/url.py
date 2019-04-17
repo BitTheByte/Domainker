@@ -67,7 +67,7 @@ def chkurl(url,check_headers,check_interesting_files,timeout=60):
 				else:
 					scanned = res.url
 
-				if not res.status_code in [404,503]:
+				if  res.status_code == 200:
 					if urlparse(url + interesting_file).netloc == urlparse(scanned).netloc:
 						if interesting_file in urlparse(scanned).path:
 							output += "%s\n        |> [INTERESTING DIRECTORY]> %s%s" % (colorama.Fore.GREEN,colorama.Fore.WHITE,res.url)

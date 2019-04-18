@@ -28,19 +28,19 @@ lib\modules\struts.py : [--struts] Perform struts attack
 
 ## Basic usage
  ```
- $ python domainker.py -i google.com [.. Plugins]
- $ python domainker.py -d mydomains_list.txt [.. Plugins]
- $ python domainker.py -d mydomains_list.txt --url
- $ python domainker.py -d mydomains_list.txt --dns
+ $ domainker -i google.com [.. Plugins]
+ $ domainker -d mydomains_list.txt [.. Plugins]
+ $ domainker -d mydomains_list.txt --url
+ $ domainker -d mydomains_list.txt --dns
  ```
 You could also use multiple plugins at the same time
 ```
-$ python domainker.py -d mydomains_list.txt --url --dns --aws ...
-$ python domainker.py -i google.com --url --dns --aws ...
+$ domainker -d mydomains_list.txt --url --dns --aws ...
+$ domainker -i google.com --url --dns --aws ...
 ```
 ## Options
 ```
-$ python domainker --help
+$ domainker --help
 ```
 - Create output file [--output/-o file_name]
 - Threads count [--threads/-t number]

@@ -24,6 +24,8 @@ lib\modules\aws.py    : [--aws] Check if target is hosted on amazon (Use -x to r
 lib\modules\cname.py  : [--dns] Return host cname
 lib\modules\url.py    : [--url] Return host response code [See the options for more details]
 lib\modules\struts.py : [--struts] Perform struts attack
+lib\modules\spf.py    : [--spf] Check for spf record
+
 ```
 
 ## Basic usage

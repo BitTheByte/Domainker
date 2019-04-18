@@ -15,7 +15,7 @@ from lib.modules.url import chkurl
 from lib.modules.aws import chkaws
 
 
-__VERSION__ = 1.71
+__VERSION__ = 1.72
 modules = [
 	args.url,
 	args.aws,

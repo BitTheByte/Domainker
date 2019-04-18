@@ -10,6 +10,7 @@ parser.add_argument('-u','--url',action='store_true', help='Get target response 
 parser.add_argument('-H','--headers',action='store_true', help='Check for missing security headers')
 parser.add_argument('-F','--interesting-files',action='store_true', help='Check interesting files')
 
+parser.add_argument('-r','--spf',action='store_true', help='Check SPF record')
 parser.add_argument('-s','--struts',action='store_true', help='Perform struts attack')
 
 parser.add_argument('-a','--aws',action='store_true', help='Check if target is hosted on Amazon aws')

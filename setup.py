@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
+
     name='Domainker',
-    version='1.71',
+    version='1.72',
     description='BugBounty Tool',
     url='https://github.com/BitTheByte/Domainker',
     author='Ahmed Ezzat (BitTheByte)',

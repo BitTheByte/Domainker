@@ -5,8 +5,13 @@ from urlparse import urlparse
 requests.packages.urllib3.disable_warnings()
 
 interesting_files = [
-	"/.git",
+	"/.git/config",
 	"/.svn",
+	"/.DS_Store",
+	"/.evn"
+	"/Dockerfile",
+	"/composer.json",
+	"/web.config",
 ]
 
 headers_list = [
@@ -67,7 +72,7 @@ def chkurl(url,check_headers,check_interesting_files,timeout=60):
 				else:
 					scanned = res.url
 
-				if  res.status_code == 200:
+				if res.status_code == 200:
 					if urlparse(url + interesting_file).netloc == urlparse(scanned).netloc:
 						if interesting_file in urlparse(scanned).path:
 							output += "%s\n        |> [INTERESTING DIRECTORY]> %s%s" % (colorama.Fore.GREEN,colorama.Fore.WHITE,res.url)

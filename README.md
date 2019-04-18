@@ -1,5 +1,5 @@
 # Domainker (Beta)
-My personal bugbounty tool
+![](https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/banner.png "Logo Title Text 1")
 
 # How to use
 I developed this tool to be easily managed and upgraded so i created it as small plugin systems connected together

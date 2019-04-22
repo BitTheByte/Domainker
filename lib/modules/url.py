@@ -8,7 +8,7 @@ interesting_files = [
 	"/.git/config",
 	"/.svn",
 	"/.DS_Store",
-	"/.evn"
+	"/.env"
 	"/Dockerfile",
 	"/composer.json",
 	"/web.config",

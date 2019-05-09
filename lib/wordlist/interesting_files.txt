@@ -1,0 +1,10 @@
+.git
+.git/config
+.svn
+.svn/config
+.DS_Store
+.env
+Dockerfile
+composer.json
+web.config
+logo.png

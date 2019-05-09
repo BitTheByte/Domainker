@@ -1,62 +1,49 @@
-from lib.utils.helpers import read_file
-from lib.utils.helpers import update
-from lib.utils.helpers import durl
-from lib.utils.helpers import uri
-
-from lib.utils.multi import Threader
-from lib.utils.args import args
-from lib.utils import cli
-
-from lib.modules.experimental.cache_poisoning import chkpoisoning
-from lib.modules.cname import chkcname
-from lib.modules.struts import chkstruts
-from lib.modules.spf import chkspf
-from lib.modules.crlf import chkcrlf
-from lib.modules.url import chkurl
-from lib.modules.aws import chkaws
+from lib import *
 
 
-__VERSION__ = 1.72
-modules = [
-	args.url,
-	args.aws,
-	args.dns, 
-	args.crlf,
-	args.cache_poisoning,
-	args.struts,
-	args.spf
-]
-
-def URL(host): return uri(durl(host))
-
-def main(host,timeout=30):
-	if not host.strip(): return
+def scan(endpoint,timeout=30):
+	if not endpoint.strip(): return
 	cli.pprint(
-		HOST  = URL(host),
-		URL   = chkurl(URL(host),args.headers,args.interesting_files,timeout) if args.url else None,
-		DNS   = chkcname(durl(host)) if args.dns else None,
-		AWS   = chkaws(durl(host),args.aws_takeover,timeout) if args.aws else None,
-		CRLF  = chkcrlf(URL(host),timeout) if args.crlf else None,
-		CACHE = chkpoisoning(URL(host),timeout) if args.cache_poisoning else None,
-		STRUTS = chkstruts(URL(host),timeout) if args.struts else None,
-		SPF    = chkspf(durl(host),timeout) if args.spf else None
+		HOST   = urlify(endpoint)['URL_FILE'],
+		URL    = chkurl(endpoint,args.interesting_files,timeout)        if args.all or args.url else None,
+		AWS    = chkaws(endpoint,timeout)                               if args.all or args.aws else None,
+		DNS    = chkcname(endpoint)                                     if args.all or args.dns else None,
+		PUT    = chkput(endpoint,timeout)                               if args.all or args.put else None,
+		CRLF   = chkcrlf(endpoint,timeout)                              if args.all or args.crlf else None,
+		STRUTS = chkstruts(endpoint,timeout)                            if args.all or args.struts else None,
+		SPF    = chkspf(endpoint,timeout)                               if args.all or args.spf else None,
+		CACHE  = chkpoisoning(urlify(endpoint)['URL_FILE'],timeout)     if args.all or args.cache_poisoning else None,
+
 	)
 
-
-
 cli.banner()
-update(__VERSION__)
 
-for module in modules:
+update(version)
+
+for module in modules: 
 	if module: break
-else: cli.no_options()
+else:
+	cli.no_options()
 
 cli.info(args)
 
-if args.input: main(args.input,args.request_timeout)
+if args.input:
+	"""
+		[Using -i] Single input handling
+	"""
+	scan(args.input,args.request_timeout)
+
 else:
+	"""
+		[Using -d] Multi input file read handling
+	"""
 	thread = Threader(args.threads)
-	for host in read_file(args.domains): thread.put(main, [host,args.request_timeout])
+	for host in read_file(args.domains): thread.put(scan, [host,args.request_timeout])
 	thread.finish_all()
 
-if args.output != None: cli.save_log(args.output)
+
+if args.output != None:
+	"""
+		[Using -o] Output Saving
+	"""
+	cli.save_log(args.output)

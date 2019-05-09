@@ -18,13 +18,14 @@ I developed this tool to be easily managed and upgraded so i created it as small
 
 ## Plugins and usage
 ```
-lib\modules\experimental\cache_poisoning.py : [--cache-poisoning] Check if the host is vulnerable to cache poisoning
-lib\modules\crlf.py   : [--crlf] Check if host is vulnerable to CRLF
-lib\modules\aws.py    : [--aws] Check if target is hosted on amazon (Use -x to run Auto-Takeover)
-lib\modules\cname.py  : [--dns] Return host cname
-lib\modules\url.py    : [--url] Return host response code [See the options for more details]
-lib\modules\struts.py : [--struts] Perform struts attack
-lib\modules\spf.py    : [--spf] Check for spf record
+lib\plugins\experimental\cache_poisoning.py : [--cache-poisoning] Check if the host is vulnerable to cache poisoning
+lib\plugins\crlf.py   : [--crlf] Check if Host is Vulnerable To CRLF
+lib\plugins\aws.py    : [--aws] Check if The Target is found on Amazon
+lib\plugins\cname.py  : [--dns] Return Target cname
+lib\plugins\url.py    : [--url] Return Target Response Code [See the options for more details]
+lib\plugins\struts.py : [--struts] Attack Struts [CVE-2018-11776]
+lib\plugins\put.py    : [--put] Check if [PUT] Method is Enabled
+lib\plugins\spf.py    : [--spf] Check For SPF Record
 ```
 
 ## Basic usage
@@ -45,9 +46,7 @@ $ domainker --help
 ```
 - Create output file [--output/-o file_name]
 - Threads count [--threads/-t number]
-- Takeover aws [--aws-takeover/-x] [--aws required]
-- Missing headers [--headers/-H] [--url required]
-- Interesting files search [--interesting-files/-F] [--url required]
+- Interesting files search [--interesting-files/-F] [--url / --all required]
 - Thread timeout [--thread-timeout/-T seconds]
 - Request timeout [--request-timeout/-rt seconds]
 

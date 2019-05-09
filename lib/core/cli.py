@@ -34,15 +34,9 @@ def escape_ansi(line):
 def save_log(path):
 	open(path,"w").write(escape_ansi(log))
 
-def start_pause():
-	raw_input(colorama.Fore.YELLOW + " [!] Press enter to start ")
-
-def end_pause():
-	raw_input("\n"+colorama.Fore.GREEN + " [!] Finished enter to exit ")
-
 
 def info(args):
-	print(" [INFO]\n  |_> Number of thread(s): {}\n  |_> Thread(s) timeout: {}\n  |_> Request(s) timeout: {}\n".format(args.threads,args.thread_timeout,args.request_timeout))
+	print(" [INFO]\n  |_> Number of thread(s): {}\n  |_> Request(s) timeout: {}\n".format(args.threads,args.request_timeout))
 
 
 def banner():
@@ -59,6 +53,4 @@ def banner():
 			G=colorama.Fore.LIGHTGREEN_EX,
 			Y=colorama.Fore.YELLOW
 			))
-	print (colorama.Fore.LIGHTRED_EX + "      > [ BY ] Ahmed Ezzat (BitTheByte) & Abdulrhman adel (k3r1it0)")
-	print (colorama.Fore.LIGHTBLACK_EX + "      > [ Linkedin ] https://linkedin.com/in/abdulrhmanadel")
-	print (colorama.Fore.LIGHTBLACK_EX + "      > [ Github ] https://github.com/BitTheByte\n")
+	print (colorama.Fore.LIGHTBLUE_EX + "      > [ Github ] https://github.com/BitTheByte/Domainker\n")

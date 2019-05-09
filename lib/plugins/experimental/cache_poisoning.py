@@ -15,13 +15,13 @@ def chkpoisoning(host,timeout):
 			},verify=False,timeout=timeout)
 
 		if forwarded_host in request.content:
-			return "%sMaybe vulnerable - [X-Forwarded-Host] reflected at response" % (Fore.GREEN)
+			return "%sMaybe Vulnerable - [X-Forwarded-Host] Reflected at Response" % (Fore.GREEN)
 
 		if request.history:
 			for request in request.history:
 				if "Location" in request.headers:
 					if forwarded_host in request.headers["Location"]:
-						return "%sMaybe vulnerable - [X-Forwarded-Host] reflected at headers" % (Fore.GREEN)
-		return "%sNot vulnerable" % Fore.RED
-	except:
+						return "%sMaybe vulnerable - [X-Forwarded-Host] Reflected at Headers" % (Fore.GREEN)
+		return "%sNot Vulnerable" % Fore.RED
+	except Exception as e:
 		return "%sUnreachable" % Fore.RED

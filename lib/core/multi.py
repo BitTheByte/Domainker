@@ -5,8 +5,6 @@ try:
 except:
 	import Queue as queue
 
-
-
 class Threader:
 	def __init__(self,pool_size=1):
 		self.q = queue.Queue()
@@ -34,7 +32,7 @@ class Threader:
 		return self.q.queue.pop()
 
 	def finish_all(self):
-		for _ in xrange(self.q.qsize()): self.__t()
+		for _ in range(self.q.qsize()): self.__t()
 		self.__wait()
 
 	def put(self,target,args):
@@ -42,5 +40,5 @@ class Threader:
 			self.q.put(threading.Thread(target=target,name=self.__name(),args=tuple(args)))
 
 		if self.q.qsize() >= self.pool_size:
-			for _ in xrange(self.q.qsize()): self.__t()
+			for _ in range(self.q.qsize()): self.__t()
 			self.__wait()

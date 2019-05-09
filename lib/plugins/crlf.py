@@ -1,10 +1,7 @@
-from colorama import Fore
-import requests
-import requests.packages.urllib3
-requests.packages.urllib3.disable_warnings()
+from linker import *
 
 vuln_msg = "%sVulnerable %s-> %s%s"
-safe_msg = "%sNot vulnerable"
+safe_msg = "%sNot Vulnerable"
 inject_header  = "controlled-header"
 inject_value   = "controlled-value"
 
@@ -15,7 +12,8 @@ inject_payloads = [
 ]
 
 
-def chkcrlf(url,timeout=30):
+def chkcrlf(endpoint,timeout=30):
+    url = helpers.urlify(endpoint)['URL_FILE']
 
     results = []
     for inject_payload in inject_payloads:

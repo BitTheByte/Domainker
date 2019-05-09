@@ -1,6 +1,5 @@
 from linker import *
 
-
 upload_name = 'domainker_aws_poc.html'
 upload_body = """<html>
 <!-- DOMAINKER_TAKEOVER(This is a vuln host) -->
@@ -21,14 +20,11 @@ def tkaws(bucket):
 					)
 		else:
 			return "%sFile Uploaded And not Accessable%s" %(Fore.BLUE,Fore.RESET)
-
 	except Exception as e:
 		return "%sAccess Denied%s" %(Fore.RED,Fore.RESET)
 
 
-
 def chkaws(endpoint,timeout):
-
 	bucket = helpers.urlify(endpoint)['HOST']
 
 	try:
@@ -39,6 +35,5 @@ def chkaws(endpoint,timeout):
 			msg = '%sFound [AWS] Bucket %s::%s ' "http://%s.s3.amazonaws.com%s" % (Fore.GREEN,Fore.YELLOW,Fore.LIGHTWHITE_EX,bucket,Fore.RESET)
 			msg += '\n        |> Upload Result [%s]' % tkaws(bucket)
 			return msg
-
 	except Exception as e:
 		return '%sUnreachable' % (Fore.RED)

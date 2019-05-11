@@ -7,4 +7,4 @@
 Dockerfile
 composer.json
 web.config
-logo.png
+.gitignore

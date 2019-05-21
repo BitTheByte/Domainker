@@ -20,7 +20,7 @@ I developed this tool to be easily managed and upgraded so i created it as small
 ```
 lib\plugins\experimental\cache_poisoning.py : [--cache-poisoning] Check if the host is vulnerable to cache poisoning
 lib\plugins\crlf.py   : [--crlf] Check if Host is Vulnerable To CRLF
-lib\plugins\aws.py    : [--aws] Check if The Target is found on Amazon + Auto upload
+lib\plugins\aws.py    : [--aws] Check if The Target is found on Amazon + Automatic uploading
 lib\plugins\cname.py  : [--dns] Return Target cname
 lib\plugins\url.py    : [--url] Return Target Response Code [See the options for more details]
 lib\plugins\struts.py : [--struts] Attack Struts [CVE-2018-11776]

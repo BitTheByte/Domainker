@@ -1,14 +1,15 @@
 import threading
-
+import time
 try:
 	import queue
 except:
 	import Queue as queue
 
 class Threader:
-	def __init__(self,pool_size=1):
+	def __init__(self,pool_size=1,name='DOMAINKER_THRD'):
 		self.q = queue.Queue()
 		self.pool_size = pool_size
+		self.thread_name=name
 
 	def __t(self):
 		thread = self.q.get()
@@ -16,7 +17,7 @@ class Threader:
 		thread.start()
 
 	def __name(self):
-		return "DOMAINKER_THRD"
+		return self.thread_name
 
 	def __wait(self):
 		while 1:
@@ -24,6 +25,7 @@ class Threader:
 			remain = [x.name for x in running if self.__name() in x.name]
 			if len(remain) == 0:
 				break
+			time.sleep(0.5)
 
 	def on_waiting(self):
 		return self.q.qsize()

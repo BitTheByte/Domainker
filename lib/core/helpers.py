@@ -9,6 +9,7 @@ def run_on_threading(function,arguments,threads=5):
 	def wrap(function,*args):
 		ret = function(*args)
 		stored_values.append( {'args':args,'return':ret} )
+		return 0
 
 	threader = Threader(threads,name='run_on_threading')
 	for arg in arguments:

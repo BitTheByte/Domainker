@@ -48,7 +48,7 @@ def remote_sync(repo_path):
 	with lock:
 		if md5(remote_code) != md5(local_code):
 			print("  |> [%sUPDATED%s]: %s" % (Fore.CYAN,Fore.RESET,repo_path))
-			# open(repo_path,"w").write(remote_code)
+			open(repo_path,"w").write(remote_code)
 		else:
 			print("  |> [%sUP-TO-DATE%s]: %s" % (Fore.GREEN,Fore.RESET,repo_path))
 

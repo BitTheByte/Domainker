@@ -22,6 +22,7 @@ remote_version(version)
 
 if(scheduled_update()):
 	run_on_threading(remote_sync,tree([
+		"lib/plugins/experimental/*.py",
 		"lib/plugins/*.py",
 		"lib/core/*.py"
 	]),5) 

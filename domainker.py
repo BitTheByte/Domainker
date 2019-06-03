@@ -18,12 +18,20 @@ def scan(endpoint,timeout=30):
 
 cli.banner()
 
-update(version)
+remote_version(version)
+
+if(scheduled_update()):
+	run_on_threading(remote_sync,tree([
+		"lib/plugins/*.py",
+		"lib/core/*.py"
+	]),5) 
+
 
 for module in modules: 
 	if module: break
 else:
 	cli.no_options()
+
 
 cli.info(args)
 

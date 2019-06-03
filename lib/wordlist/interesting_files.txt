@@ -1,10 +1,9 @@
 .git
 .git/config
-.svn
-.svn/config
+.gitignore
 .DS_Store
+.svn
 .env
 Dockerfile
 composer.json
 web.config
-.gitignore

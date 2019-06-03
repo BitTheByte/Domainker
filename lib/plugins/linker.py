@@ -1,6 +1,6 @@
 import sys
 sys.path.append('lib/core')
-
+from botocore.handlers import disable_signing
 from botocore.config import Config
 from urlparse import urlparse
 from botocore import UNSIGNED

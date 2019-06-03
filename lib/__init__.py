@@ -1,6 +1,6 @@
-from lib.core.helpers import read_file
-from lib.core.helpers import update
-from lib.core.helpers import urlify
+from lib.core.updater import *
+from lib.core.helpers import *
+
 from lib.core.multi import Threader
 from lib.core.args import args
 from lib.core import cli
@@ -15,7 +15,7 @@ from lib.plugins.aws import chkaws
 from lib.plugins.put import chkput
 
 
-version = 1.74
+version = 1.75
 modules = [
 	args.url,
 	args.aws,
@@ -27,5 +27,3 @@ modules = [
 	args.put,
 	args.all
 ]
-
-

@@ -1,8 +1,7 @@
 from linker import *
 
+@helpers.on_error("NaN")
 def chkcname(endpoint):
-	try:
-		answers = resolver.query(helpers.urlify(endpoint)['HOST'], 'CNAME')
-		return ','.join([str(rdata.target) for rdata in answers])
-	except:
-		return "NaN"
+	answers = resolver.query(helpers.urlify(endpoint)['HOST'], 'CNAME')
+	return ','.join([str(rdata.target) for rdata in answers])
+

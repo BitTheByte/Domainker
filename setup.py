@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
 
     name='Domainker',
-    version='1.74',
+    version='1.75',
     description='BugBounty Tool',
     url='https://github.com/BitTheByte/Domainker',
     author='Ahmed Ezzat (BitTheByte)',

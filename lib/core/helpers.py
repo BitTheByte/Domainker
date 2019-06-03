@@ -1,8 +1,17 @@
-from requests import get
 from colorama import Fore
 from multi import Threader
 from urlparse import urlparse
 
+def on_error(error_msg):
+	def decorator(function):
+		def wrapper(*args, **kwargs):
+			try:
+				result = function(*args, **kwargs)
+				return result
+			except Exception as e:
+				return "%s%s%s" %(Fore.RED,error_msg,Fore.RESET)
+		return wrapper
+	return decorator
 
 def run_on_threading(function,arguments,threads=5):
 	stored_values = []
@@ -17,7 +26,6 @@ def run_on_threading(function,arguments,threads=5):
 
 	threader.finish_all()
 	return stored_values
-
 
 def urlify(var):
 	parts = urlparse(var)._asdict()
@@ -37,16 +45,6 @@ def urlify(var):
 		'URL_FILE': URL_FILE ,
 		'URL_DIR' : URL_DIR
 	}
-
-
-
-def update(current_version):
-	try:
-		remote_version = float(get("https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/version",verify=False).content.strip())
-		if remote_version > current_version:
-			print(" %s[WARNING] %sYou are using an old version of this tool [%s] a newer version is available [%s]"%(Fore.RED,Fore.LIGHTWHITE_EX,current_version,remote_version))
-	except:
-		pass
 
 
 def read_file(path):

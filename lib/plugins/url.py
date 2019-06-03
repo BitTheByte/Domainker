@@ -5,8 +5,7 @@ FLAG_OVER_HTTP = 101
 FLAG_DIR_LISTING = 103
 
 def OK(url):
-	if fetch(url)['code'] == 200:
-		return True
+	if fetch(url)['code'] == 200: return True
 	return False
 		
 def fetch(url,timeout=30):

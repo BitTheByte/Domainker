@@ -21,7 +21,7 @@ def scheduled_update():
 	last_check = datetime.strptime(open("lib/core/update.sync","r").read().strip(),'%Y-%m-%d').date()
 	diff = (today - last_check).days
 
-	if  diff  >= 3:
+	if  diff >= 5:
 		print(" %s[%s*%s]%s: Scheduled Automatic Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))
 		open("lib/core/update.sync","w").write(str(today))
 		return 1

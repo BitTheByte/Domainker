@@ -25,7 +25,7 @@ if(scheduled_update()):
 		"lib/plugins/experimental/*.py",
 		"lib/plugins/*.py",
 		"lib/core/*.py"
-	]),5) 
+	])) 
 
 
 for module in modules: 

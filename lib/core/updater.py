@@ -4,8 +4,10 @@ from colorama import Fore
 from datetime import date
 from requests import get
 from glob import glob
+from args import args
 import hashlib
 import re
+import os
 
 lock = Lock()
 
@@ -20,6 +22,15 @@ def scheduled_update():
 	today = date.today()
 	last_check = datetime.strptime(open("lib/core/update.sync","r").read().strip(),'%Y-%m-%d').date()
 	diff = (today - last_check).days
+
+	if not os.path.isfile("lib/core/update.sync"):
+		open("lib/core/update.sync","w").write(str(today))
+		return 0
+
+	if args.force_update:
+		print(" %s[%s*%s]%s: Scheduled Automatic Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))
+		open("lib/core/update.sync","w").write(str(today))
+		return 1
 
 	if  diff >= 5:
 		print(" %s[%s*%s]%s: Scheduled Automatic Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))

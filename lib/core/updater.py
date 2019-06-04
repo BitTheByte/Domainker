@@ -28,7 +28,7 @@ def scheduled_update():
 		return 0
 
 	if args.force_update:
-		print(" %s[%s*%s]%s: Scheduled Automatic Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))
+		print(" %s[%s*%s]%s: Forced Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))
 		open("lib/core/update.sync","w").write(str(today))
 		return 1
 

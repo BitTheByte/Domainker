@@ -20,12 +20,14 @@ def tree(paths):
 
 def scheduled_update():
 	today = date.today()
-	last_check = datetime.strptime(open("lib/core/update.sync","r").read().strip(),'%Y-%m-%d').date()
-	diff = (today - last_check).days
+
 
 	if not os.path.isfile("lib/core/update.sync"):
 		open("lib/core/update.sync","w").write(str(today))
 		return 0
+	
+	last_check = datetime.strptime(open("lib/core/update.sync","r").read().strip(),'%Y-%m-%d').date()
+	diff = (today - last_check).days
 
 	if args.force_update:
 		print(" %s[%s*%s]%s: Forced Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))

@@ -20,8 +20,7 @@ def tree(paths):
 
 def scheduled_update():
 	today = date.today()
-
-
+	
 	if not os.path.isfile("lib/core/update.sync"):
 		open("lib/core/update.sync","w").write(str(today))
 		return 0

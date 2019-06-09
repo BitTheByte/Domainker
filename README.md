@@ -1,10 +1,6 @@
 # Domainker
 ![](https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/banner.png "Logo Title Text 1")
 # Setup
-- Python pip
-```
-pip install domainker
-```
 - Manual setup 
 ```
 git clone https://github.com/BitTheByte/Domainker

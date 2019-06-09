@@ -1,6 +1,7 @@
-from colorama import Fore
-from multi import Threader
 from urlparse import urlparse
+from multi import Threader
+from colorama import Fore
+from args import args
 
 def on_error(error_msg):
 	def decorator(function):
@@ -29,6 +30,10 @@ def run_on_threading(function,arguments,threads=5):
 
 def urlify(var):
 	parts = urlparse(var)._asdict()
+
+	if args.https:
+		parts['scheme'] = "https"
+
 	if not parts['scheme'] and not parts['netloc']:
 		parts['netloc'],parts['path'] = parts['path'],parts['netloc']
 
@@ -42,7 +47,7 @@ def urlify(var):
 
 	return {
 		'HOST': parts['netloc'],
-		'URL_FILE': URL_FILE ,
+		'URL_FILE': URL_FILE,
 		'URL_DIR' : URL_DIR
 	}
 

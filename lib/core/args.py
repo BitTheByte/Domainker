@@ -6,9 +6,9 @@ parser = argparse.ArgumentParser(description='Welcome to domainker help page')
 parser.add_argument('-d','--domains',type=str, help='Domains File')
 parser.add_argument('-i','--input',type=str, help='Single Host')
 parser.add_argument('-o','--output',type=str, help='Output File')
+parser.add_argument('-S','--https',action='store_true', help='Force https instead of http')
 
 parser.add_argument('-u','--url',action='store_true', help='Get Target Response Code With Some Additional Checks')
-parser.add_argument('-S','--https',action='store_true', help='Force https instead of http')
 parser.add_argument('-F','--interesting-files',action='store_true', help='Check For Interesting Files, Requires [--url or --all]')
 
 parser.add_argument('-P','--put',action='store_true', help='Check If [PUT] Method is Enabled')

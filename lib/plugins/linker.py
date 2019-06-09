@@ -1,5 +1,6 @@
 import sys
 sys.path.append('lib/core')
+	
 from botocore.handlers import disable_signing
 from botocore.config import Config
 from urlparse import urlparse
@@ -16,3 +17,4 @@ import boto3
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 
+from helpers import attr

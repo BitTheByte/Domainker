@@ -4,7 +4,7 @@ from lib import *
 def scan(endpoint,timeout=30):
 	if not endpoint.strip(): return
 	cli.pprint(
-		HOST   = urlify(endpoint)['URL_FILE'],
+		HOST   = urlify(endpoint).as_file,
 		URL    = chkurl(endpoint,args.interesting_files,timeout)        if args.all or args.url else None,
 		AWS    = chkaws(endpoint,timeout)                               if args.all or args.aws else None,
 		DNS    = chkcname(endpoint)                                     if args.all or args.dns else None,
@@ -12,7 +12,7 @@ def scan(endpoint,timeout=30):
 		CRLF   = chkcrlf(endpoint,timeout)                              if args.all or args.crlf else None,
 		STRUTS = chkstruts(endpoint,timeout)                            if args.all or args.struts else None,
 		SPF    = chkspf(endpoint,timeout)                               if args.all or args.spf else None,
-		CACHE  = chkpoisoning(urlify(endpoint)['URL_FILE'],timeout)     if args.all or args.cache_poisoning else None,
+		CACHE  = chkpoisoning(urlify(endpoint).as_file,timeout)         if args.all or args.cache_poisoning else None,
 
 	)
 

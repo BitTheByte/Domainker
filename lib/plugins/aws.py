@@ -42,7 +42,7 @@ def chkacl(bucket):
 
 @helpers.on_error("Unreachable")
 def chkaws(endpoint,timeout):
-	bucket = helpers.urlify(endpoint)['HOST']
+	bucket = helpers.urlify(endpoint).host
 	aws = requests.head("http://%s.s3.amazonaws.com" % bucket,timeout=timeout)
 
 	if aws.status_code == 404:

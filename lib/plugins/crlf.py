@@ -11,18 +11,13 @@ inject_payloads = [
     "/%E5%98%8D"  # WaF bypass
 ]
 
-
 def chkcrlf(endpoint,timeout=30):
-    url = helpers.urlify(endpoint)['URL_FILE']
-
+    url = helpers.urlify(endpoint).as_file
     results = []
     for inject_payload in inject_payloads:
-
         try:
             request_url = url + "%s%s:%s" % (inject_payload,inject_header,inject_value)
-
             request = requests.get(request_url, timeout=timeout,verify=False)
-
             for header_name, header_value in request.headers.items():
                 if header_value == inject_value:
                     results.append(["v",vuln_msg % (
@@ -31,7 +26,6 @@ def chkcrlf(endpoint,timeout=30):
                             Fore.LIGHTWHITE_EX,
                             request_url
                         )])
-
 
             if request.history:
                 for history in request.history:

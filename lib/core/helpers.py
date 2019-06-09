@@ -3,22 +3,35 @@ from multi import Threader
 from colorama import Fore
 from args import args
 
-def on_error(error_msg):
+
+
+def attr(**kwargs):
+	class cls(object):
+		pass
+	instance = cls()
+	for key,value in kwargs.items():
+		setattr(instance, key, value)
+	return instance
+
+def on_error(error_msg,color=1):
 	def decorator(function):
 		def wrapper(*args, **kwargs):
 			try:
 				result = function(*args, **kwargs)
 				return result
 			except Exception as e:
-				return "%s%s%s" %(Fore.RED,error_msg,Fore.RESET)
+				if color:
+					return "%s%s%s" %(Fore.RED,error_msg,Fore.RESET)
+				return error_msg
 		return wrapper
 	return decorator
+
 
 def run_on_threading(function,arguments,threads=5):
 	stored_values = []
 	def wrap(function,*args):
 		ret = function(*args)
-		stored_values.append( {'args':args,'return':ret} )
+		stored_values.append( attr(args =args, ret=ret) )
 		return 0
 
 	threader = Threader(threads,name='run_on_threading')
@@ -30,9 +43,7 @@ def run_on_threading(function,arguments,threads=5):
 
 def urlify(var):
 	parts = urlparse(var)._asdict()
-
-	if args.https:
-		parts['scheme'] = "https"
+	if args.https: parts['scheme'] = "https"
 
 	if not parts['scheme'] and not parts['netloc']:
 		parts['netloc'],parts['path'] = parts['path'],parts['netloc']
@@ -40,16 +51,10 @@ def urlify(var):
 	if not parts['scheme']: parts['scheme'] = "http"
 
 	URL = "%s://%s%s" % (parts['scheme'],parts['netloc'],parts['path'])
-	  
 
-	URL_FILE = URL if URL[-1]!="/" else URL [0:-1]
-	URL_DIR  = URL if URL[-1]=="/" else URL + "/"
-
-	return {
-		'HOST': parts['netloc'],
-		'URL_FILE': URL_FILE,
-		'URL_DIR' : URL_DIR
-	}
+	return attr(host = parts['netloc'],
+			as_file  = URL if URL[-1]!="/" else URL [0:-1],
+			as_dir   = URL if URL[-1]=="/" else URL + "/")
 
 
 def read_file(path):

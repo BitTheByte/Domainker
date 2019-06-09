@@ -44,7 +44,7 @@ def remote_version(current_version):
 		remote_version = float(get("https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/version",verify=False).content.strip())
 		if remote_version > current_version:
 			print(" %s[WARNING] %sYou are using an old version of this tool [%s] a newer version is available [%s]"%(Fore.RED,Fore.LIGHTWHITE_EX,current_version,remote_version))
-		if current_version < 1.76:
+		if float(open("../version","r").read().strip()) < 1.76:
 			print(""" %s[CRITICAL] %sYou will encounter an error message during launch
             Advisory: https://github.com/BitTheByte/Domainker/issues/4"""%(Fore.RED,Fore.LIGHTWHITE_EX))
 	except:

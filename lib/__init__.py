@@ -15,7 +15,7 @@ from lib.plugins.aws import chkaws
 from lib.plugins.put import chkput
 
 
-version = 1.75
+version = 1.76
 modules = [
 	args.url,
 	args.aws,

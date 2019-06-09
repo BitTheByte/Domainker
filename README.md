@@ -1,11 +1,12 @@
 # Domainker
 ![](https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/banner.png "Logo Title Text 1")
 # Setup
+Python pypi package got removed. if you want to use this tool follow the steps below
 - Manual setup 
 ```
 git clone https://github.com/BitTheByte/Domainker
 cd Domainker
-python setup.py install
+python domainker.py
 ```
  
  

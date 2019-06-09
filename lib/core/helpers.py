@@ -3,8 +3,6 @@ from multi import Threader
 from colorama import Fore
 from args import args
 
-
-
 def attr(**kwargs):
 	class cls(object):
 		pass
@@ -25,7 +23,6 @@ def on_error(error_msg,color=1):
 				return error_msg
 		return wrapper
 	return decorator
-
 
 def run_on_threading(function,arguments,threads=5):
 	stored_values = []

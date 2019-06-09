@@ -6,6 +6,7 @@ Python pypi package got removed. if you want to use this tool follow the steps b
 ```
 git clone https://github.com/BitTheByte/Domainker
 cd Domainker
+pip install -r requirements.txt
 python domainker.py
 ```
  

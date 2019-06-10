@@ -10,7 +10,7 @@ def is_available(url):
 		return response
 	return 0
 
-@helpers.on_error(attr(url='',code='down',content='',headers=[]),0)
+@helpers.on_error(attr(url='',code='down',content='',headers=[],content_length=0),0)
 def fetch(url,fast_mode=1,timeout=30):
 	if fast_mode == 1:
 		request = requests.head(url,timeout=timeout,allow_redirects=True,verify=False)
@@ -24,9 +24,8 @@ def fetch(url,fast_mode=1,timeout=30):
 
 	request = requests.get(url,timeout=timeout,verify=False)
 	if request.history:
-		return attr(url= request.history[-1].headers['location'],code= request.history[-1].status_code,headers= request.history[-1].headers,content= request.content)
-
-	return attr(url= request.url,code= request.status_code,content= request.content)
+		return attr(url= request.history[-1].headers['location'],code= request.history[-1].status_code,headers= request.history[-1].headers,content= request.content,content_length= len(request.content))
+	return attr(url= request.url,code= request.status_code,content= request.content,content_length= len(request.content))
 
 def search_for_files(endpoint,files,threads=5):
 	endpoint          = helpers.urlify(endpoint).as_dir

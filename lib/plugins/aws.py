@@ -6,7 +6,10 @@ upload_body = "<html><!-- DOMAINKER_TAKEOVER(This is a vulnerable host) --></htm
 @helpers.on_error("Access Denied")
 def tkaws(bucket):
 	s3 = boto3.client('s3', config=Config(signature_version=UNSIGNED))
-	s3.put_object(Bucket=bucket, Key=upload_name,ACL='public-read', Body=StringIO(str(upload_body)).read())
+	try:
+		s3.put_object(Bucket=bucket, Key=upload_name,ACL='public-read', Body=StringIO(unicode(upload_body)).read())
+	except:
+		s3.put_object(Bucket=bucket, Key=upload_name,ACL='public-read', Body=StringIO(str(upload_body)).read())
 	response = requests.get("http://{bucket}.s3.amazonaws.com/{target}".format(bucket=bucket,target=upload_name)).text
 	if upload_body in response:
 		return "%sFile Uploaded And Accessable %s::%s %s%s" %(

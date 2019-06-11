@@ -51,7 +51,7 @@ def remote_version(current_version):
 		pass
 
 def md5(content):
-	return hashlib.md5(re.sub(r'\s+', '', content)).hexdigest()
+	return hashlib.md5(re.sub(r'\s+', '', content).encode('utf-8')).hexdigest()
 
 def remote_sync(repo_path):
 	global lock

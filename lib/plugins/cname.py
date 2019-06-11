@@ -1,4 +1,4 @@
-from linker import *
+from .linker import *
 
 @helpers.on_error("NaN")
 def chkcname(endpoint):

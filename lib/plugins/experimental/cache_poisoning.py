@@ -13,7 +13,7 @@ def chkpoisoning(host,timeout):
 				#'Host':forwarded_host
 			},verify=False,timeout=timeout)
 
-		if forwarded_host in request.content:
+		if forwarded_host in request.text:
 			return "%sMaybe Vulnerable - [X-Forwarded-Host] Reflected at Response" % (Fore.GREEN)
 
 		if request.history:

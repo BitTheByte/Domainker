@@ -1,4 +1,4 @@
-from linker import *
+from .linker import *
 
 vuln_msg = "%sVulnerable %s-> %s%s"
 safe_msg = "%sNot Vulnerable"
@@ -18,7 +18,7 @@ def chkcrlf(endpoint,timeout=30):
         try:
             request_url = url + "%s%s:%s" % (inject_payload,inject_header,inject_value)
             request = requests.get(request_url, timeout=timeout,verify=False)
-            for header_name, header_value in request.headers.items():
+            for header_name, header_value in list(request.headers.items()):
                 if header_value == inject_value:
                     results.append(["v",vuln_msg % (
                             Fore.GREEN,
@@ -29,7 +29,7 @@ def chkcrlf(endpoint,timeout=30):
 
             if request.history:
                 for history in request.history:
-                    for header_name, header_value in history.headers.items():
+                    for header_name, header_value in list(history.headers.items()):
                         if header_value == inject_value:
                             results.append(["v",vuln_msg % (
                                     Fore.GREEN,

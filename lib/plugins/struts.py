@@ -1,4 +1,4 @@
-from linker import *
+from .linker import *
 
 @helpers.on_error("Unreachable")
 def chkstruts(endpoint,timeout=30):

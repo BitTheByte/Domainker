@@ -3,7 +3,7 @@ import time
 try:
 	import queue
 except:
-	import Queue as queue
+	import queue as queue
 
 class Threader:
 	def __init__(self,pool_size=1,name='DOMAINKER_THRD'):

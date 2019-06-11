@@ -1,13 +1,16 @@
-from urlparse import urlparse
-from multi import Threader
+from lib.core.multi import Threader
+from lib.core.args import args
 from colorama import Fore
-from args import args
+try:
+	from urllib.parse import urlparse
+except:
+	from urlparse import urlparse
 
 def attr(**kwargs):
 	class cls(object):
 		pass
 	instance = cls()
-	for key,value in kwargs.items():
+	for key,value in list(kwargs.items()):
 		setattr(instance, key, value)
 	return instance
 
@@ -18,6 +21,7 @@ def on_error(error_msg,color=1):
 				result = function(*args, **kwargs)
 				return result
 			except Exception as e:
+				# print(e) For testing only
 				if color:
 					return "%s%s%s" %(Fore.RED,error_msg,Fore.RESET)
 				return error_msg

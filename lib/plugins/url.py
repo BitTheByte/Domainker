@@ -1,4 +1,4 @@
-from linker import *
+from .linker import *
 
 FLAG_OVER_HTTP    = 101
 FLAG_DIR_LISTING  = 103
@@ -20,12 +20,12 @@ def fetch(url,fast_mode=1,timeout=30):
 
 	if fast_mode == 2:
 		request = requests.get(url,timeout=timeout,allow_redirects=True,verify=False)
-		return attr(url= request.url, code= request.status_code, content_length= len(request.content))
+		return attr(url= request.url, code= request.status_code, content_length= len(request.text))
 
 	request = requests.get(url,timeout=timeout,verify=False)
 	if request.history:
-		return attr(url= request.history[-1].headers['location'],code= request.history[-1].status_code,headers= request.history[-1].headers,content= request.content,content_length= len(request.content))
-	return attr(url= request.url,code= request.status_code,content= request.content,content_length= len(request.content))
+		return attr(url= request.history[-1].headers['location'],code= request.history[-1].status_code,headers= request.history[-1].headers,content= request.text,content_length= len(request.text))
+	return attr(url= request.url,code= request.status_code,content= request.text,content_length= len(request.text))
 
 def search_for_files(endpoint,files,threads=5):
 	endpoint          = helpers.urlify(endpoint).as_dir

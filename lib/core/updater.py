@@ -4,7 +4,7 @@ from colorama import Fore
 from datetime import date
 from requests import get
 from glob import glob
-from args import args
+from .args import args
 import hashlib
 import re
 import os
@@ -29,24 +29,24 @@ def scheduled_update():
 	diff = (today - last_check).days
 
 	if args.force_update:
-		print(" %s[%s*%s]%s: Forced Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))
+		print((" %s[%s*%s]%s: Forced Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET)))
 		open("lib/core/update.sync","w").write(str(today))
 		return 1
 
 	if  diff >= 5:
-		print(" %s[%s*%s]%s: Scheduled Automatic Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))
+		print((" %s[%s*%s]%s: Scheduled Automatic Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET)))
 		open("lib/core/update.sync","w").write(str(today))
 		return 1
 	return 0
 
 def remote_version(current_version):
 	try:
-		remote_version = float(get("https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/version",verify=False).content.strip())
+		remote_version = float(get("https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/version",verify=False).text.strip())
 		if remote_version > current_version:
-			print(" %s[WARNING] %sYou are using an old version of this tool [%s] a newer version is available [%s]"%(Fore.RED,Fore.LIGHTWHITE_EX,current_version,remote_version))
+			print((" %s[WARNING] %sYou are using an old version of this tool [%s] a newer version is available [%s]"%(Fore.RED,Fore.LIGHTWHITE_EX,current_version,remote_version)))
 		if float(open("lib/version","r").read().strip()) < 1.76:
-			print(""" %s[CRITICAL] %sYou will encounter an error message during launch
-            Advisory: https://github.com/BitTheByte/Domainker/issues/4"""%(Fore.RED,Fore.LIGHTWHITE_EX))
+			print((""" %s[CRITICAL] %sYou will encounter an error message during launch
+            Advisory: https://github.com/BitTheByte/Domainker/issues/4"""%(Fore.RED,Fore.LIGHTWHITE_EX)))
 	except:
 		pass
 
@@ -57,13 +57,13 @@ def remote_sync(repo_path):
 	global lock
 	github_base = "https://raw.githubusercontent.com/BitTheByte/Domainker/master/%s"
 
-	remote_code = get(github_base % repo_path).content.strip()
+	remote_code = get(github_base % repo_path).text.strip()
 	local_code  = open(repo_path,"r").read().strip()
 
 	with lock:
 		if md5(remote_code) != md5(local_code):
-			print("  |> [%sUPDATED%s]: %s" % (Fore.CYAN,Fore.RESET,repo_path))
+			print(("  |> [%sUPDATED%s]: %s" % (Fore.CYAN,Fore.RESET,repo_path)))
 			open(repo_path,"w").write(remote_code)
 		else:
-			print("  |> [%sUP-TO-DATE%s]: %s" % (Fore.GREEN,Fore.RESET,repo_path))
+			print(("  |> [%sUP-TO-DATE%s]: %s" % (Fore.GREEN,Fore.RESET,repo_path)))
 

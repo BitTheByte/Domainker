@@ -46,7 +46,7 @@ def chkacl(bucket):
 @helpers.on_error("Unreachable")
 def chkaws(endpoint,timeout):
 	bucket = helpers.urlify(endpoint).host
-	aws = requests.head("http://%s.s3.amazonaws.com" % bucket,timeout=timeout)
+	aws = requests.get("http://%s.s3.amazonaws.com" % bucket,timeout=timeout)
 
 	if aws.status_code == 404:
 		return '%sNo [AWS] Bucket Associated With The Endpoint' % (Fore.RED)
@@ -54,5 +54,9 @@ def chkaws(endpoint,timeout):
 		msg = '%sFound [AWS] Bucket %s::%s ' "http://%s.s3.amazonaws.com%s" % (Fore.GREEN,Fore.YELLOW,Fore.LIGHTWHITE_EX,bucket,Fore.RESET)
 		msg += '\n        |> Upload Result [%s]' % tkaws(bucket)
 		msg += '\n        |> Acl Result [%s]' % chkacl(bucket)
+		if '<Name>' in aws.text or 'ListBucketResult' in aws.text:
+			msg += '\n        |> File(s) Listing [%sEnabled%s]' % (Fore.GREEN,Fore.RESET)
+		else:
+			msg += '\n        |> File(s) Listing [%sDisabled%s]' % (Fore.RED,Fore.RESET)
 		return msg
 

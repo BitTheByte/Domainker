@@ -1,6 +1,7 @@
 from .linker import *
 
 def connect(host,port,output):
+
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.settimeout(2)
@@ -16,4 +17,4 @@ def chkports(host,ports):
     output = {}
     for port in ports.split(','): threader.put(connect, [host,int(port),output])
     threader.finish_all()
-    return ' '.join([Fore.GREEN + str(k) if v else Fore.RED + str(k) for k,v in output.items()])
+    return ' '.join(sorted([Fore.GREEN + str(k) if v else Fore.RED + str(k) for k,v in output.items()])[::-1])

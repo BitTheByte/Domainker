@@ -1,6 +1,5 @@
 from lib import *
 
-
 def scan(endpoint,timeout=30):
 	if not endpoint.strip(): return
 	cli.pprint(
@@ -13,20 +12,11 @@ def scan(endpoint,timeout=30):
 		STRUTS = chkstruts(endpoint,timeout)                            if args.all or args.struts else None,
 		SPF    = chkspf(endpoint,timeout)                               if args.all or args.spf else None,
 		CACHE  = chkpoisoning(urlify(endpoint).as_file,timeout)         if args.all or args.cache_poisoning else None,
-
 	)
 
 cli.banner()
 
 remote_version(version)
-
-if(scheduled_update()):
-	run_on_threading(remote_sync,tree([
-		"lib/plugins/experimental/*.py",
-		"lib/plugins/*.py",
-		"lib/core/*.py"
-	])) 
-
 
 for module in modules: 
 	if module: break

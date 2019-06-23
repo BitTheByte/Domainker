@@ -6,64 +6,42 @@ from requests import get
 from glob import glob
 from .args import args
 import hashlib
+import json
 import re
 import os
 
-lock = Lock()
+def md5(content): return hashlib.md5(re.sub(r'\s+', '', content).encode('utf-8')).hexdigest()
 
-def tree(paths):
-	structure = []
-	for path in paths:
-		for f in glob(path):
-			structure.append(f.replace("\\","/"))
-	return structure
+def hash_local_files(remote_table):
+	table = {}
+	for filepath,remote_md5 in remote_table.items():
+		if os.path.isfile(filepath):
+			table[filepath] = md5(open(filepath,'r').read())
+		else:
+			table[filepath] = None
+	return table
 
-def scheduled_update():
-	today = date.today()
-	
-	if not os.path.isfile("lib/core/update.sync"):
-		open("lib/core/update.sync","w").write(str(today))
-		return 0
-	
-	last_check = datetime.strptime(open("lib/core/update.sync","r").read().strip(),'%Y-%m-%d').date()
-	diff = (today - last_check).days
-
-	if args.force_update:
-		print((" %s[%s*%s]%s: Forced Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET)))
-		open("lib/core/update.sync","w").write(str(today))
-		return 1
-
-	if  diff >= 5:
-		print((" %s[%s*%s]%s: Scheduled Automatic Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET)))
-		open("lib/core/update.sync","w").write(str(today))
-		return 1
-	return 0
+def github_file_content(path):
+	for tries in range(5):
+		try:
+			conn = get('https://raw.githubusercontent.com/BitTheByte/Domainker/master/%s' % path)
+			return conn.text.replace('\r\n',"\n")
+		except:
+			return 'ERR'
 
 def remote_version(current_version):
-	try:
-		remote_version = float(get("https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/version",verify=False).text.strip())
-		if remote_version > current_version:
-			print((" %s[WARNING] %sYou are using an old version of this tool [%s] a newer version is available [%s]"%(Fore.RED,Fore.LIGHTWHITE_EX,current_version,remote_version)))
-		if float(open("lib/version","r").read().strip()) < 1.76:
-			print((""" %s[CRITICAL] %sYou will encounter an error message during launch
-            Advisory: https://github.com/BitTheByte/Domainker/issues/4"""%(Fore.RED,Fore.LIGHTWHITE_EX)))
-	except:
-		pass
+	if not os.path.isfile('lib/core/.db'): open('lib/core/.db','w').write("{}")
 
-def md5(content):
-	return hashlib.md5(re.sub(r'\s+', '', content).encode('utf-8')).hexdigest()
+	remote_table = json.loads(get('https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/remote.db').text.strip())
+	local_table  = hash_local_files(remote_table)
 
-def remote_sync(repo_path):
-	global lock
-	github_base = "https://raw.githubusercontent.com/BitTheByte/Domainker/master/%s"
-
-	remote_code = get(github_base % repo_path).text.strip()
-	local_code  = open(repo_path,"r").read().strip()
-
-	with lock:
-		if md5(remote_code) != md5(local_code):
-			print(("  |> [%sUPDATED%s]: %s" % (Fore.CYAN,Fore.RESET,repo_path)))
-			open(repo_path,"w").write(remote_code)
+	for filepath,remote_md5 in remote_table.items():
+		if local_table[filepath] == None:
+			filedata = github_file_content(filepath)
+			if filedata != 'ERR':
+				open(filepath,'w').write(filedata)
+				print(" >> [%sCREATED%s]: %s" % (Fore.YELLOW,Fore.RESET,filepath))
 		else:
-			print(("  |> [%sUP-TO-DATE%s]: %s" % (Fore.GREEN,Fore.RESET,repo_path)))
-
+			if local_table[filepath] != remote_md5:
+				open(filepath,'w').write(github_file_content(filepath))
+				print(" >> [%sUPDATED%s]: %s" % (Fore.CYAN,Fore.RESET,filepath))

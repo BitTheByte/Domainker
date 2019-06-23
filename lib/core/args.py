@@ -12,7 +12,7 @@ parser.add_argument('-u','--url',action='store_true', help='Get Target Response 
 parser.add_argument('-F','--interesting-files',action='store_true', help='Check For Interesting Files, Requires [--url or --all]')
 
 parser.add_argument('-P','--put',action='store_true', help='Check if [PUT] Method is Enabled')
-parser.add_argument('-Pp','--ports',type=str,const='', nargs='?', help='Scan Ports')
+parser.add_argument('-Pp','--ports',type=str,const='*', nargs='?', help='Scan Ports')
 
 parser.add_argument('-r','--spf',action='store_true', help='Check SPF Record')
 parser.add_argument('-s','--struts',action='store_true', help='Attack Struts [CVE-2018-11776]')

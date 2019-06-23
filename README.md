@@ -18,6 +18,7 @@ I developed this tool to be easily managed and upgraded so i created it as small
 ```
 lib\plugins\experimental\cache_poisoning.py : [--cache-poisoning] Check if the host is vulnerable to cache poisoning
 lib\plugins\crlf.py   : [--crlf] Check if Host is Vulnerable To CRLF
+lib\plugins\port.py   : [--ports] Scan for most common open ports. You can also use your own ports --ports 123,456,789
 lib\plugins\aws.py    : [--aws] Check if The Target is found on Amazon + Automatic uploading
 lib\plugins\cname.py  : [--dns] Return Target cname
 lib\plugins\url.py    : [--url] Return Target Response Code [See the options for more details]

@@ -30,8 +30,6 @@ def github_file_content(path):
 			return 'ERR'
 
 def remote_version(current_version):
-	if not os.path.isfile('lib/core/.db'): open('lib/core/.db','w').write("{}")
-
 	remote_table = json.loads(get('https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/remote.db').text.strip())
 	local_table  = hash_local_files(remote_table)
 

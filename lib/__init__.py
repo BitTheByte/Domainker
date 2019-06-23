@@ -13,6 +13,7 @@ from lib.plugins.crlf import chkcrlf
 from lib.plugins.url import chkurl
 from lib.plugins.aws import chkaws
 from lib.plugins.put import chkput
+from lib.plugins.port import chkports
 
 
 version = 1.76
@@ -21,6 +22,7 @@ modules = [
 	args.aws,
 	args.dns, 
 	args.crlf,
+	args.ports,
 	args.cache_poisoning,
 	args.struts,
 	args.spf,

@@ -11,7 +11,8 @@ parser.add_argument('-S','--https',action='store_true', help='Force https instea
 parser.add_argument('-u','--url',action='store_true', help='Get Target Response Code With Some Additional Checks')
 parser.add_argument('-F','--interesting-files',action='store_true', help='Check For Interesting Files, Requires [--url or --all]')
 
-parser.add_argument('-P','--put',action='store_true', help='Check If [PUT] Method is Enabled')
+parser.add_argument('-P','--put',action='store_true', help='Check if [PUT] Method is Enabled')
+parser.add_argument('-Pp','--ports',type=str,const='', nargs='?', help='Scan Ports')
 
 parser.add_argument('-r','--spf',action='store_true', help='Check SPF Record')
 parser.add_argument('-s','--struts',action='store_true', help='Attack Struts [CVE-2018-11776]')
@@ -25,7 +26,6 @@ parser.add_argument('-p','--cache-poisoning',action='store_true', help='Check Fo
 
 parser.add_argument('-A','--all',action='store_true', help='Run All Plugins [MEMORY HEAVY]')
 
-parser.add_argument('-uu','--force-update',action='store_true', help='Force auto-update to run')
 parser.add_argument('-t','--threads',type=int, help='Set Number Of Threads',default=10)
 parser.add_argument('-rt','--request-timeout',type=int, help='Request Timeout',default=30)
 

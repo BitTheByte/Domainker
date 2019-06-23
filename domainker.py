@@ -11,6 +11,7 @@ def scan(endpoint,timeout=30):
 		CRLF   = chkcrlf(endpoint,timeout)                              if args.all or args.crlf else None,
 		STRUTS = chkstruts(endpoint,timeout)                            if args.all or args.struts else None,
 		SPF    = chkspf(endpoint,timeout)                               if args.all or args.spf else None,
+		PORTS  = chkports(urlify(endpoint).host,args.ports)             if args.all or args.ports else None,
 		CACHE  = chkpoisoning(urlify(endpoint).as_file,timeout)         if args.all or args.cache_poisoning else None,
 	)
 

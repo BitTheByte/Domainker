@@ -11,7 +11,7 @@ def connect(host,port,output):
         output[port] = False
 
 def chkports(host,ports):
-    if ports == '*': ports = '443,80,8080,8081,9000,3306,3389,2222,21,22,445'
+    if ports == '*' or ports == None: ports = '443,80,8080,8081,9000,3306,3389,2222,21,22,445'
     threader  = Threader(len(ports)/2,name='PRTSCN')
     output = {}
     for port in ports.split(','): threader.put(connect, [host,int(port),output])

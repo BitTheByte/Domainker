@@ -17,4 +17,6 @@ def chkports(host,ports):
     output = {}
     for port in ports.split(','): threader.put(connect, [host,int(port),output])
     threader.finish_all()
-    return ' '.join(sorted([Fore.GREEN + str(k) if v else Fore.RED + str(k) for k,v in output.items()])[::-1])
+    open_ports = [Fore.GREEN + str(k) for k,v in output.items() if v]
+    if len(open_ports) == 0: return Fore.RED + "ALL CLOSED"
+    return ' '.join(open_ports)

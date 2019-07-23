@@ -30,6 +30,10 @@ def github_file_content(path):
 			return 'ERR'
 
 def remote_version(current_version):
+	if os.path.isfile('devmode_disable_update'):
+		print(" %s[DEVMODE]" % Fore.RED)
+		return
+
 	remote_table = json.loads(get('https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/remote.db').text.strip())
 	local_table  = hash_local_files(remote_table)
 

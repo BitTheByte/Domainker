@@ -38,13 +38,8 @@ def search_for_files(endpoint,files,threads=5):
 	found = []
 	for result in threads_result:
 		if result.ret and not result.ret.content_length in (base_response,base_404_response):
-			"""
-			TODO: FIX THIS
-			This can be tricked by 30x redirects
-			host.com/.git -> 302 -> another.com/home
-			return value: another.com/home
-			"""
-			found.append(result.ret.url)
+			if urlparse(result.ret.url).path.replace("/","") == urlparse(result.args[0]).path.replace("/",""):
+				found.append(result.ret.url)
 	return found
 
 def additional_checks(request):

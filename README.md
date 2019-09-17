@@ -1,5 +1,5 @@
 # Domainker
-![](https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/banner.png "Logo Title Text 1")
+![](https://raw.githubusercontent.com/BitTheByte/Domainker/master/lib/banner.png "")
 # Setup
 Python pypi package got removed. if you want to use this tool follow the steps below
 - Manual setup 

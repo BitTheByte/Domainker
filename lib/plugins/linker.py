@@ -10,6 +10,7 @@ from colorama import Fore
 from colorama import init
 from dns import resolver
 from io import StringIO
+import re
 import requests
 import boto3
 import socket

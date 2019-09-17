@@ -21,7 +21,7 @@ def on_error(error_msg,color=1):
 				result = function(*args, **kwargs)
 				return result
 			except Exception as e:
-				# print(e) For testing only
+				#print(e) #For testing only
 				if color:
 					return "%s%s%s" %(Fore.RED,error_msg,Fore.RESET)
 				return error_msg

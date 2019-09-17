@@ -11,7 +11,7 @@ def md5(content): return hashlib.md5(re.sub(r'\s+', '', content).encode('utf-8')
 files = [ os.path.join(parent, name) for (parent, subdirs, files) in os.walk('.') for name in files + subdirs ]
 table = {}
 for name in files:
-	for bad in [os.path.basename(__file__),'.txt','.md','.pyc','.git','.png','.db']:
+	for bad in [os.path.basename(__file__),'.txt','.md','.pyc','.git','.png','.db','.jpg']:
 		if bad in name:break
 	else:
 		name = name.replace('.\\','').replace('\\','/')
